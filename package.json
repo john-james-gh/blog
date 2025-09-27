@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@next/eslint-plugin-next": "^15.5.4",
     "@tailwindcss/postcss": "^4",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
