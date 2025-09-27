@@ -425,11 +425,6 @@ export type POSTS_QUERYResult = Array<{
     } | null
   } | null
 }>
-// Variable: POSTS_SLUGS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]{   "slug": slug.current}
-export type POSTS_SLUGS_QUERYResult = Array<{
-  slug: string | null
-}>
 // Variable: POST_QUERY
 // Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  slug,  mainImage,  publishedAt,  _createdAt,  _updatedAt,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type POST_QUERYResult = {
@@ -536,7 +531,6 @@ export type SITEMAP_QUERYResult = Array<{
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  _updatedAt,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': POSTS_QUERYResult
-    '*[_type == "post" && defined(slug.current)]{ \n  "slug": slug.current\n}': POSTS_SLUGS_QUERYResult
     '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  slug,\n  mainImage,\n  publishedAt,\n  _createdAt,\n  _updatedAt,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': POST_QUERYResult
     '\n*[_type == "post" && defined(slug.current)] {\n    "href": "/posts/" + slug.current,\n    _updatedAt\n}\n': SITEMAP_QUERYResult
   }
