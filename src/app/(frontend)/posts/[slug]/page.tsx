@@ -1,6 +1,5 @@
 import {PortableText} from "next-sanity"
 import Image from "next/image"
-import Link from "next/link"
 import {notFound} from "next/navigation"
 
 import {urlFor} from "@/sanity/lib/image"
@@ -35,8 +34,6 @@ export default async function Page({params}: {params: Promise<{slug: string}>}) 
           <PortableText value={post.body} components={components} />
         </article>
       ) : null}
-      <hr />
-      <Link href="/posts">&larr; Return to index</Link>
     </main>
   )
 }
