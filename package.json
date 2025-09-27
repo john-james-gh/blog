@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prebuild": "pnpm typegen",
-    "build": "next build --turbopack",
+    "build": "next build",
     "predev": "pnpm typegen",
     "dev": "next dev --turbopack",
     "format": "prettier --write . && sort-package-json",
@@ -14,7 +14,6 @@
     "typegen": "sanity schema extract --path=./src/sanity/extract.json && sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/client": "^7.11.2",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.10.1",
@@ -29,6 +28,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@next/eslint-plugin-next": "^15.5.4",
+    "@sanity/client": "^7.11.2",
     "@tailwindcss/postcss": "^4",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^24",
