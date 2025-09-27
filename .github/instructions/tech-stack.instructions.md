@@ -11,15 +11,27 @@ applyTo: "**"
 - **Package Manager**: pnpm (specified in packageManager field)
 - **Runtime**: Node.js 22 with React 19
 
-## Database & Validation
+## Content Platform
 
-- **Validation**: Zod v4+ for runtime type checking
+- **CMS**: Sanity v4 (`sanity` + Studio under `/src/app/studio`)
+- **Sanity Integration**: `next-sanity` v11 for GROQ queries and live previews
+- **Asset Pipeline**: `@sanity/image-url` v1 for responsive image builders
 
 ## Styling & UI
 
-- **Styling**: Tailwind CSS v4
+- **Styling**: Tailwind CSS v4 across the public-facing app
 - **PostCSS**: `@tailwindcss/postcss` for processing
 - **UI Library**: React 19 with built-in components
+- **Component Styling**: `styled-components` v6 scoped to the embedded Sanity Studio under `/studio`
+
+## Utilities
+
+- **Date Handling**: `dayjs` v1 for lightweight formatting and parsing
+
+## Analytics & Performance
+
+- **Analytics**: `@vercel/analytics` v1 for privacy-friendly metrics
+- **Performance Insights**: `@vercel/speed-insights` v1 for runtime telemetry
 
 ## Development Tools
 
@@ -33,11 +45,6 @@ applyTo: "**"
   - `@eslint/eslintrc`: v3.3+ for legacy config support
 - **Prettier**: v3.6+ with Tailwind plugin and import sorting
 - **Import Sorting**: `@trivago/prettier-plugin-sort-imports` v5.2+
-
-### Testing
-
-- **Unit Testing**: Jest v30 with Next.js helpers (`next/jest`) for ts-node, environment variables, and module mapping
-  - `@jest/globals`: v30+ for Jest globals in TypeScript
 
 ### TypeScript & Development
 
