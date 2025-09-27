@@ -9,11 +9,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 10
 
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 10
 
     groups:
       react-stack:
