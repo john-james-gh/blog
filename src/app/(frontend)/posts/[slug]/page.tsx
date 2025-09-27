@@ -47,7 +47,7 @@ export async function generateMetadata(props: PageProps<"/posts/[slug]">): Promi
   return metadata
 }
 
-export const generatePostJsonLd = (post: POST_QUERYResult): WithContext<BlogPosting> => {
+const generatePostJsonLd = (post: POST_QUERYResult): WithContext<BlogPosting> => {
   if (!post) {
     notFound()
   }
