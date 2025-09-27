@@ -83,8 +83,5 @@ export const blockContentType = defineType({
         language: "ts", // default, users can switch in Studio
       },
     }),
-    defineArrayMember({
-      type: "table",
-    }),
   ],
 })

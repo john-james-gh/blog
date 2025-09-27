@@ -16,14 +16,6 @@ type PortableCodeValue = {
   language?: string
 }
 
-type PortableTableRow = {
-  cells?: string[]
-}
-
-type PortableTableValue = {
-  rows?: PortableTableRow[]
-}
-
 const supportedLanguages: Array<{name: string; definition: LanguageFn}> = [
   {name: "bash", definition: bash},
   {name: "javascript", definition: javascript},
@@ -65,23 +57,6 @@ export const components: PortableTextComponents = {
             dangerouslySetInnerHTML={{__html: highlightedCode}}
           />
         </pre>
-      )
-    },
-    table: ({value}) => {
-      const rows = ((value ?? {}) as PortableTableValue).rows ?? []
-
-      return (
-        <table>
-          <tbody>
-            {rows.map((row: PortableTableRow, rIdx: number) => (
-              <tr key={`row-${rIdx}`}>
-                {(row.cells ?? []).map((cell: string, cIdx: number) => (
-                  <td key={`cell-${rIdx}-${cIdx}`}>{cell}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
       )
     },
     image: (props) =>

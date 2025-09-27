@@ -89,12 +89,4 @@
   ul {
     @apply my-6 ml-6 list-disc [&>li]:mt-2;
   }
-
-  table {
-    @apply my-6 w-full text-sm;
-  }
-
-  td {
-    @apply m-4 border px-4 py-2;
-  }
 }
