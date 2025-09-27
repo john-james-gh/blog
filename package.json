@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prebuild": "pnpm typegen",
-    "build": "next build",
+    "build": "next build --turbopack",
     "predev": "pnpm typegen",
     "dev": "next dev --turbopack",
     "format": "prettier --write . && sort-package-json",
