@@ -1,3 +1,5 @@
+import {Analytics} from "@vercel/analytics/next"
+import {SpeedInsights} from "@vercel/speed-insights/next"
 import {VisualEditing} from "next-sanity/visual-editing"
 import {draftMode} from "next/headers"
 
@@ -14,6 +16,8 @@ export default async function FrontendLayout({
     <>
       {children}
       <SanityLive />
+      <SpeedInsights />
+      <Analytics />
       {(await draftMode()).isEnabled && (
         <>
           <DisableDraftMode />
