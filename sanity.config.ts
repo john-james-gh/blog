@@ -3,6 +3,8 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `\src\app\studio\[[...tool]]\page.tsx` route
  */
+import {codeInput} from "@sanity/code-input"
+import {table} from "@sanity/table"
 import {visionTool} from "@sanity/vision"
 import {defineConfig} from "sanity"
 import {presentationTool} from "sanity/presentation"
@@ -22,6 +24,8 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
   plugins: [
+    table(),
+    codeInput(),
     structureTool({structure}),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin

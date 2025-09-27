@@ -60,7 +60,7 @@ export type Post = {
           _key: string
         }>
         style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote"
-        listItem?: "bullet"
+        listItem?: "bullet" | "number"
         markDefs?: Array<{
           href?: string
           _type: "link"
@@ -84,6 +84,12 @@ export type Post = {
         _type: "image"
         _key: string
       }
+    | ({
+        _key: string
+      } & Code)
+    | ({
+        _key: string
+      } & Table)
   >
   seo?: Seo
 }
@@ -167,7 +173,7 @@ export type BlockContent = Array<
         _key: string
       }>
       style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote"
-      listItem?: "bullet"
+      listItem?: "bullet" | "number"
       markDefs?: Array<{
         href?: string
         _type: "link"
@@ -191,7 +197,35 @@ export type BlockContent = Array<
       _type: "image"
       _key: string
     }
+  | ({
+      _key: string
+    } & Code)
+  | ({
+      _key: string
+    } & Table)
 >
+
+export type Code = {
+  _type: "code"
+  language?: string
+  filename?: string
+  code?: string
+  highlightedLines?: Array<number>
+}
+
+export type Table = {
+  _type: "table"
+  rows?: Array<
+    {
+      _key: string
+    } & TableRow
+  >
+}
+
+export type TableRow = {
+  _type: "tableRow"
+  cells?: Array<string>
+}
 
 export type SanityImagePaletteSwatch = {
   _type: "sanity.imagePaletteSwatch"
@@ -317,6 +351,9 @@ export type AllSanitySchemaTypes =
   | Author
   | Category
   | BlockContent
+  | Code
+  | Table
+  | TableRow
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -337,6 +374,12 @@ export type POSTS_QUERYResult = Array<{
   title: string | null
   slug: Slug | null
   body: Array<
+    | ({
+        _key: string
+      } & Code)
+    | ({
+        _key: string
+      } & Table)
     | {
         children?: Array<{
           marks?: Array<string>
@@ -345,7 +388,7 @@ export type POSTS_QUERYResult = Array<{
           _key: string
         }>
         style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal"
-        listItem?: "bullet"
+        listItem?: "bullet" | "number"
         markDefs?: Array<{
           href?: string
           _type: "link"
@@ -431,6 +474,12 @@ export type POST_QUERYResult = {
   _id: string
   title: string | null
   body: Array<
+    | ({
+        _key: string
+      } & Code)
+    | ({
+        _key: string
+      } & Table)
     | {
         children?: Array<{
           marks?: Array<string>
@@ -439,7 +488,7 @@ export type POST_QUERYResult = {
           _key: string
         }>
         style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal"
-        listItem?: "bullet"
+        listItem?: "bullet" | "number"
         markDefs?: Array<{
           href?: string
           _type: "link"

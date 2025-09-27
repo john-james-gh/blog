@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "highlight.js/styles/github.css";
 
 :root {
   --background: oklch(0.9818 0.0054 95.0986);
@@ -46,11 +47,19 @@
     @apply bg-background text-foreground font-sans;
   }
 
+  img {
+    @apply my-6 rounded;
+  }
+
   code,
   pre,
   kbd,
   samp {
-    @apply relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+    @apply bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+
+  pre {
+    @apply my-6 overflow-x-auto rounded-lg;
   }
 
   h1 {
@@ -58,15 +67,15 @@
   }
 
   h2 {
-    @apply mt-4 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+    @apply mt-6 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
   }
 
   h3 {
-    @apply mt-4 scroll-m-20 text-2xl font-semibold tracking-tight;
+    @apply mt-6 scroll-m-20 text-2xl font-semibold tracking-tight;
   }
 
   h4 {
-    @apply mt-4 scroll-m-20 text-xl font-semibold tracking-tight;
+    @apply mt-6 scroll-m-20 text-xl font-semibold tracking-tight;
   }
 
   p {
@@ -79,5 +88,13 @@
 
   ul {
     @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+
+  table {
+    @apply my-6 w-full text-sm;
+  }
+
+  td {
+    @apply m-4 border px-4 py-2;
   }
 }

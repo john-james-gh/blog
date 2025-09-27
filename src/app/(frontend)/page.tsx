@@ -61,7 +61,7 @@ export default async function Page() {
   const indexJson = JSON.stringify(generateIndexJsonLd(posts))
 
   return (
-    <main className="bg-accent/50 container mx-auto flex min-h-screen flex-col items-center gap-6 p-12">
+    <main className="bg-accent/30 container mx-auto flex min-h-screen flex-col items-center gap-6 p-12">
       <h1>John James.</h1>
       <ul className="flex w-full flex-col text-center">
         {posts.map((post) => (
