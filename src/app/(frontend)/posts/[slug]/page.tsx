@@ -1,17 +1,81 @@
 import {PortableText} from "next-sanity"
+import type {Metadata} from "next/dist/lib/metadata/types/metadata-interface"
 import Image from "next/image"
 import {notFound} from "next/navigation"
+import {BlogPosting, WithContext} from "schema-dts"
 
 import {urlFor} from "@/sanity/lib/image"
 import {sanityFetch} from "@/sanity/lib/live"
 import {POST_QUERY} from "@/sanity/lib/queries"
 import {components} from "@/sanity/portableTextComponents"
+import {POST_QUERYResult} from "@/sanity/types"
 
-export default async function Page({params}: {params: Promise<{slug: string}>}) {
-  const {data: post} = await sanityFetch({
+const getPost = async (props: PageProps<"/posts/[slug]">) => {
+  const params = await props.params
+  return sanityFetch({
     query: POST_QUERY,
-    params: await params,
+    params,
   })
+}
+
+export async function generateMetadata(props: PageProps<"/posts/[slug]">): Promise<Metadata> {
+  const {data: post} = await getPost(props)
+
+  if (!post) {
+    notFound()
+  }
+
+  const metadata: Metadata = {
+    title: post.seo.title,
+    description: post.seo.description,
+  }
+
+  if (post.seo.image) {
+    metadata.openGraph = {
+      images: {
+        url: urlFor(post.seo.image).width(1200).height(630).url(),
+        width: 1200,
+        height: 630,
+      },
+    }
+  }
+
+  if (post.seo.noIndex) {
+    metadata.robots = "noindex"
+  }
+
+  return metadata
+}
+
+export const generatePostJsonLd = (post: POST_QUERYResult): WithContext<BlogPosting> => {
+  if (!post) {
+    notFound()
+  }
+
+  const baseUrl = process.env.VERCEL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/posts/${post.slug?.current}`,
+    },
+    headline: post.seo?.title,
+    description: post.seo?.description,
+    image: post.seo?.image ? [urlFor(post.seo.image).width(1200).height(630).url()] : undefined,
+    author: post.author?.name ? {"@type": "Person", name: post.author.name} : undefined,
+    publisher: {
+      "@type": "Person",
+      name: "John James",
+    },
+    datePublished: post._createdAt,
+    dateModified: post._updatedAt,
+  }
+}
+
+export default async function Page(props: PageProps<"/posts/[slug]">) {
+  const {data: post} = await getPost(props)
 
   if (!post) {
     notFound()
@@ -34,6 +98,10 @@ export default async function Page({params}: {params: Promise<{slug: string}>}) 
           <PortableText value={post.body} components={components} />
         </article>
       ) : null}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{__html: JSON.stringify(generatePostJsonLd(post))}}
+      />
     </main>
   )
 }
