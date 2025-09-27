@@ -87,9 +87,6 @@ export type Post = {
     | ({
         _key: string
       } & Code)
-    | ({
-        _key: string
-      } & Table)
   >
   seo?: Seo
 }
@@ -200,9 +197,6 @@ export type BlockContent = Array<
   | ({
       _key: string
     } & Code)
-  | ({
-      _key: string
-    } & Table)
 >
 
 export type Code = {
@@ -211,20 +205,6 @@ export type Code = {
   filename?: string
   code?: string
   highlightedLines?: Array<number>
-}
-
-export type Table = {
-  _type: "table"
-  rows?: Array<
-    {
-      _key: string
-    } & TableRow
-  >
-}
-
-export type TableRow = {
-  _type: "tableRow"
-  cells?: Array<string>
 }
 
 export type SanityImagePaletteSwatch = {
@@ -352,8 +332,6 @@ export type AllSanitySchemaTypes =
   | Category
   | BlockContent
   | Code
-  | Table
-  | TableRow
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -377,9 +355,6 @@ export type POSTS_QUERYResult = Array<{
     | ({
         _key: string
       } & Code)
-    | ({
-        _key: string
-      } & Table)
     | {
         children?: Array<{
           marks?: Array<string>
@@ -477,9 +452,6 @@ export type POST_QUERYResult = {
     | ({
         _key: string
       } & Code)
-    | ({
-        _key: string
-      } & Table)
     | {
         children?: Array<{
           marks?: Array<string>
