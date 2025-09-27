@@ -3,20 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build --turbopack",
+    "prebuild": "pnpm typegen",
+    "build": "next build",
+    "predev": "pnpm typegen",
     "dev": "next dev --turbopack",
     "format": "prettier --write . && sort-package-json",
     "lint": "eslint",
-    "start": "next start"
+    "sanity": "sanity",
+    "start": "next start",
+    "typegen": "sanity schema extract --path=./src/sanity/extract.json && sanity typegen generate"
   },
   "dependencies": {
+    "@sanity/icons": "^3.7.4",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.10.1",
+    "dayjs": "^1.11.18",
     "next": "15.5.4",
+    "next-sanity": "^11.4.2",
     "react": "19.1.1",
-    "react-dom": "19.1.1"
+    "react-dom": "19.1.1",
+    "sanity": "^4.10.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@next/eslint-plugin-next": "^15.5.4",
+    "@sanity/client": "^7.11.2",
     "@tailwindcss/postcss": "^4",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^24",
