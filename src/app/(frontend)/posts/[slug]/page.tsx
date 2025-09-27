@@ -90,8 +90,8 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
           className="aspect-[800/300] w-full rounded-xl"
           src={urlFor(post.mainImage).width(800).height(300).quality(80).auto("format").url()}
           alt={post?.mainImage?.alt || ""}
-          width="800"
-          height="300"
+          width={800}
+          height={300}
         />
       ) : null}
       <h1>{post?.title}</h1>

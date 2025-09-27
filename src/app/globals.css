@@ -53,7 +53,7 @@
 
   code,
   pre {
-    @apply bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+    @apply bg-muted relative rounded font-mono text-sm font-semibold;
   }
 
   pre {
@@ -80,11 +80,23 @@
     @apply text-sm leading-7 [&:not(:first-child)]:mt-6;
   }
 
+  a {
+    @apply text-sm underline underline-offset-4;
+  }
+
   blockquote {
     @apply mt-6 border-l-2 pl-6 italic;
   }
 
   ul {
-    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+    @apply my-6 ml-6 list-disc text-sm;
+  }
+
+  ol {
+    @apply my-6 ml-6 list-decimal text-sm;
+  }
+
+  li {
+    @apply text-sm leading-7;
   }
 }

@@ -65,9 +65,18 @@ export const components: PortableTextComponents = {
           className="not-prose h-auto w-full rounded-lg"
           src={urlFor(props.value).width(600).height(400).quality(80).auto("format").url()}
           alt={props?.value?.alt || ""}
-          width="600"
-          height="400"
+          width={600}
+          height={400}
         />
       ) : null,
+  },
+  marks: {
+    link: ({children, value}) => {
+      return (
+        <a href={value?.href} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      )
+    },
   },
 }
