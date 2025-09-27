@@ -41,7 +41,7 @@ export async function generateMetadata(props: PageProps<"/posts/[slug]">): Promi
   }
 
   if (post.seo.noIndex) {
-    metadata.robots = "noindex"
+    metadata.robots = {index: false, follow: true}
   }
 
   return metadata
@@ -81,6 +81,8 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
     notFound()
   }
 
+  const pageJson = JSON.stringify(generatePostJsonLd(post))
+
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
       {post?.mainImage ? (
@@ -98,10 +100,7 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
           <PortableText value={post.body} components={components} />
         </article>
       ) : null}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{__html: JSON.stringify(generatePostJsonLd(post))}}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: pageJson}} />
     </main>
   )
 }
