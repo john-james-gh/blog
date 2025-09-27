@@ -1,7 +1,6 @@
 import {PortableText} from "next-sanity"
 import type {Metadata} from "next/dist/lib/metadata/types/metadata-interface"
 import Image from "next/image"
-import Link from "next/link"
 import {notFound} from "next/navigation"
 import {BlogPosting, WithContext} from "schema-dts"
 
@@ -85,7 +84,7 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
   const pageJson = JSON.stringify(generatePostJsonLd(post))
 
   return (
-    <main className="container mx-auto mb-100 grid grid-cols-1 gap-6 px-6 py-6">
+    <main className="bg-accent/50 container mx-auto grid grid-cols-1 gap-6 px-6 py-6 pb-100">
       {post?.mainImage ? (
         <Image
           className="aspect-[800/300] w-full"
@@ -97,9 +96,6 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
       ) : null}
       <h1>{post?.title}</h1>
       <div className="flex flex-row flex-wrap items-center gap-4">
-        <Link href="/" className="m-0 text-sm">
-          ← Back to posts
-        </Link>
         {post?.author?.name ? <p className="m-0">By {post.author.name}</p> : null}
         {post?._createdAt ? (
           <p className="m-0">Published on {new Date(post._createdAt).toLocaleDateString()}</p>

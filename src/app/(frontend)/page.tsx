@@ -61,9 +61,9 @@ export default async function Page() {
   const indexJson = JSON.stringify(generateIndexJsonLd(posts))
 
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
+    <main className="bg-accent/50 container mx-auto flex min-h-screen flex-col items-center gap-6 p-12">
       <h1>John James.</h1>
-      <ul className="grid grid-cols-1 text-center">
+      <ul className="flex w-full flex-col text-center">
         {posts.map((post) => (
           <li key={post._id} className="list-none">
             <Link className="block p-2 hover:text-blue-500" href={`/posts/${post?.slug?.current}`}>
