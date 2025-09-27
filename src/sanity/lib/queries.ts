@@ -29,10 +29,6 @@ export const POSTS_QUERY =
   }
 }`)
 
-export const POSTS_SLUGS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)]{ 
-  "slug": slug.current
-}`)
-
 export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slug][0]{
   _id,
   title,
@@ -61,8 +57,6 @@ export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slu
     image
   }
 }`)
-
-// ...all other queries
 
 export const SITEMAP_QUERY = defineQuery(`
 *[_type == "post" && defined(slug.current)] {
