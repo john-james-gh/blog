@@ -1,4 +1,5 @@
 import type {Metadata} from "next/dist/lib/metadata/types/metadata-interface"
+import Image from "next/image"
 import Link from "next/link"
 import {CollectionPage, ListItem, WebSite, WithContext} from "schema-dts"
 
@@ -60,7 +61,15 @@ export default async function Page() {
   const indexJson = JSON.stringify(generateIndexJsonLd(posts))
 
   return (
-    <main className="bg-accent/30 mx-auto flex min-h-screen max-w-4xl flex-col items-center gap-6 px-6 py-12">
+    <main className="bg-accent/30 mx-auto flex min-h-screen max-w-4xl flex-col items-center gap-6 px-6 py-6">
+      <Image
+        className="aspect-[800/300] w-full rounded-xl"
+        src="/banner.png"
+        alt="john james banner"
+        width={800}
+        height={300}
+        quality={80}
+      />
       <h1>john james.</h1>
       <ul className="flex w-full flex-col text-center">
         {posts.map((post) => (
