@@ -52,7 +52,7 @@ const generatePostJsonLd = (post: POST_QUERYResult): WithContext<BlogPosting> =>
     notFound()
   }
 
-  const baseUrl = process.env.VERCEL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
+  const baseUrl = process.env.VERCEL ? process.env.NEXT_PUBLIC_URL : "http://localhost:3000"
 
   return {
     "@context": "https://schema.org",

@@ -6,8 +6,7 @@ import {sanityFetch} from "@/sanity/lib/live"
 import {POSTS_QUERY} from "@/sanity/lib/queries"
 import type {POSTS_QUERYResult} from "@/sanity/types"
 
-const baseUrl =
-  process.env.VERCEL && process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
+const baseUrl = process.env.VERCEL ? process.env.NEXT_PUBLIC_URL! : "http://localhost:3000"
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
