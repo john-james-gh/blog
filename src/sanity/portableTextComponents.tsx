@@ -73,7 +73,7 @@ export const components: PortableTextComponents = {
   marks: {
     link: ({children, value}) => {
       return (
-        <a href={value?.href} target="_blank" rel="noopener noreferrer">
+        <a href={value?.href} target="_blank" rel="noopener">
           {children}
         </a>
       )
