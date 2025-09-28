@@ -84,7 +84,7 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
   const pageJson = JSON.stringify(generatePostJsonLd(post))
 
   return (
-    <main className="bg-accent/30 mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 py-6 pb-100">
+    <main className="bg-accent/30 mx-auto flex max-w-4xl flex-col gap-6 px-6 py-6 pb-100">
       {post?.mainImage ? (
         <Image
           className="aspect-[800/300] w-full rounded-xl"
