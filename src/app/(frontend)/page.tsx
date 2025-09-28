@@ -65,10 +65,8 @@ export default async function Page() {
       <h1>john james.</h1>
       <ul className="flex w-full flex-col text-center">
         {posts.map((post) => (
-          <li key={post._id} className="list-none">
-            <Link className="block p-2 hover:text-blue-500" href={`/posts/${post?.slug?.current}`}>
-              {post?.title}
-            </Link>
+          <li key={post._id} className="list-none p-2">
+            <Link href={`/posts/${post?.slug?.current}`}>{post?.title}</Link>
           </li>
         ))}
       </ul>
