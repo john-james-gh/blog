@@ -42,7 +42,7 @@ export const blockContentType = defineType({
         decorators: [
           {title: "Strong", value: "strong"},
           {title: "Emphasis", value: "em"},
-          {title: "Code", value: "code"},
+          {title: "Inline code", value: "code"},
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -78,6 +78,7 @@ export const blockContentType = defineType({
     }),
     defineArrayMember({
       type: "code",
+      title: "Code block",
       options: {
         withFilename: true,
         language: "ts", // default, users can switch in Studio

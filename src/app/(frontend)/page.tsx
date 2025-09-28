@@ -62,7 +62,7 @@ export default async function Page() {
 
   return (
     <main className="bg-accent/30 mx-auto flex min-h-screen max-w-4xl flex-col items-center gap-6 p-12">
-      <h1>John James.</h1>
+      <h1>john james.</h1>
       <ul className="flex w-full flex-col text-center">
         {posts.map((post) => (
           <li key={post._id} className="list-none">
