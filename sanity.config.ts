@@ -2,6 +2,7 @@
 
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `\src\app\studio\[[...tool]]\page.tsx` route
+ * It needs 'use client' directive because it's a client side rendered SPA
  */
 import {codeInput} from "@sanity/code-input"
 import {visionTool} from "@sanity/vision"
@@ -9,12 +10,11 @@ import {defineConfig} from "sanity"
 import {presentationTool} from "sanity/presentation"
 import {structureTool} from "sanity/structure"
 
-import {resolve} from "@/sanity/presentation/resolve"
-
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import {apiVersion, dataset, projectId} from "./src/sanity/env"
-import {schema} from "./src/sanity/schemaTypes"
-import {structure} from "./src/sanity/structure"
+import {apiVersion, dataset, projectId} from "@/sanity/env"
+import {resolve} from "@/sanity/presentation/resolve"
+import {schema} from "@/sanity/schema-types"
+import {structure} from "@/sanity/structure"
 
 export default defineConfig({
   basePath: "/studio",
