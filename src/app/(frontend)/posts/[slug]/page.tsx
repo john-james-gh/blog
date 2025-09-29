@@ -7,7 +7,7 @@ import {BlogPosting, WithContext} from "schema-dts"
 import {urlFor} from "@/sanity/lib/image"
 import {sanityFetch} from "@/sanity/lib/live"
 import {POST_QUERY} from "@/sanity/lib/queries"
-import {components} from "@/sanity/portableTextComponents"
+import {components} from "@/sanity/portable-text-components"
 import {POST_QUERYResult} from "@/sanity/types"
 
 const getPost = async (props: PageProps<"/posts/[slug]">) => {
