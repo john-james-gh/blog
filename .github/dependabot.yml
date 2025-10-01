@@ -35,3 +35,8 @@ updates:
         patterns:
           - "@tailwindcss/*"
           - "tailwindcss"
+
+      sanity-stack:
+        patterns:
+          - "sanity"
+          - "@sanity/*"
