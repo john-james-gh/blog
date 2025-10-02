@@ -7,7 +7,7 @@ import {SanityLive} from "@/sanity/lib/live"
 
 import {DisableDraftMode} from "./_components/disable-draft-mode"
 
-const ENABLE_SANITY_LIVE = Boolean(process.env.ENABLE_SANITY_LIVE === "true")
+const ENABLE_SANITY_LIVE = process.env.ENABLE_SANITY_LIVE === "true"
 
 export default async function FrontendLayout({
   children,
