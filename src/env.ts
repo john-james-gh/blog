@@ -16,7 +16,6 @@ const envSchema = z.object({
   VERCEL: z.string().optional(),
   ENABLE_SANITY_LIVE: z
     .string()
-    .optional()
     .default("false")
     .transform((val) => val === "true"),
 })
