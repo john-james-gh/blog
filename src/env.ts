@@ -1,8 +1,4 @@
-import {loadEnvConfig} from "@next/env"
 import {z} from "zod"
-
-const projectDir = process.cwd()
-loadEnvConfig(projectDir)
 
 const envSchema = z.object({
   // Sanity
@@ -20,14 +16,7 @@ const envSchema = z.object({
     .transform((val) => val === "true"),
 })
 
-const parsed = envSchema.safeParse(process.env)
-
-if (!parsed.success) {
-  console.error("Invalid environment variables:", parsed.error.message)
-  throw new Error("Invalid environment variables")
-}
-
-export const env = parsed.data
+export const env = envSchema.parse(process.env)
 
 if (!env.NEXT_PUBLIC_URL && env.VERCEL) {
   throw new Error("NEXT_PUBLIC_URL must be set in Vercel environment")

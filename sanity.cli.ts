@@ -4,8 +4,8 @@
  **/
 import {defineCliConfig} from "sanity/cli"
 
-import {env} from "@/env"
+import {envCli} from "@/env-cli"
 
 export default defineCliConfig({
-  api: {projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID, dataset: env.NEXT_PUBLIC_SANITY_DATASET},
+  api: {projectId: envCli.NEXT_PUBLIC_SANITY_PROJECT_ID, dataset: envCli.NEXT_PUBLIC_SANITY_DATASET},
 })
