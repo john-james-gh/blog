@@ -7,10 +7,8 @@ import {env} from "@/env"
 
 import {client} from "./client"
 
-const token = env.SANITY_API_READ_TOKEN
-
 export const {sanityFetch, SanityLive} = defineLive({
   client,
-  browserToken: token,
-  serverToken: token,
+  browserToken: env.SANITY_API_READ_TOKEN,
+  serverToken: env.SANITY_API_READ_TOKEN,
 })
