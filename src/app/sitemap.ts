@@ -1,5 +1,6 @@
 import type {MetadataRoute} from "next"
 
+import {baseUrl} from "@/env"
 import {client} from "@/sanity/lib/client"
 import {SITEMAP_QUERY} from "@/sanity/lib/queries"
 
@@ -10,8 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (!paths) {
       return []
     }
-
-    const baseUrl = process.env.VERCEL ? process.env.NEXT_PUBLIC_URL : "http://localhost:3000"
 
     return paths.map((path) => ({
       url: new URL(path.href!, baseUrl).toString(),

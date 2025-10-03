@@ -4,6 +4,7 @@ import Image from "next/image"
 import {notFound} from "next/navigation"
 import {BlogPosting, WithContext} from "schema-dts"
 
+import {baseUrl} from "@/env"
 import {urlFor} from "@/sanity/lib/image"
 import {sanityFetch} from "@/sanity/lib/live"
 import {POST_QUERY} from "@/sanity/lib/queries"
@@ -51,8 +52,6 @@ const generatePostJsonLd = (post: POST_QUERYResult): WithContext<BlogPosting> =>
   if (!post) {
     notFound()
   }
-
-  const baseUrl = process.env.VERCEL ? process.env.NEXT_PUBLIC_URL : "http://localhost:3000"
 
   return {
     "@context": "https://schema.org",

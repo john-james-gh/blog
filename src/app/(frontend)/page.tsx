@@ -3,11 +3,10 @@ import Image from "next/image"
 import Link from "next/link"
 import {CollectionPage, ListItem, WebSite, WithContext} from "schema-dts"
 
+import {baseUrl} from "@/env"
 import {sanityFetch} from "@/sanity/lib/live"
 import {POSTS_QUERY} from "@/sanity/lib/queries"
 import type {POSTS_QUERYResult} from "@/sanity/types"
-
-const baseUrl = process.env.VERCEL ? process.env.NEXT_PUBLIC_URL! : "http://localhost:3000"
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

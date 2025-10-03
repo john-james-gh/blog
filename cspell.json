@@ -1,20 +1,5 @@
 {
   "version": "0.2",
-  "ignorePaths": [
-    "coverage",
-    "pnpm-lock.yaml",
-    "node_modules",
-    ".next"
-  ],
-  "words": [
-    "GROQ",
-    "hotspot",
-    "nextjs",
-    "oklch",
-    "supabase",
-    "treeify",
-    "trivago",
-    "turbopack",
-    "vercel"
-  ]
+  "ignorePaths": ["coverage", "pnpm-lock.yaml", "node_modules", ".next"],
+  "words": ["GROQ", "hotspot", "nextjs", "oklch", "supabase", "treeify", "trivago", "turbopack", "vercel"]
 }
