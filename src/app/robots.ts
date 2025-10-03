@@ -1,8 +1,8 @@
 import type {MetadataRoute} from "next"
 
-export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.VERCEL ? process.env.NEXT_PUBLIC_URL : "http://localhost:3000"
+import {baseUrl} from "@/env"
 
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",

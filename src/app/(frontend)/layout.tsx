@@ -3,11 +3,10 @@ import {SpeedInsights} from "@vercel/speed-insights/next"
 import {VisualEditing} from "next-sanity/visual-editing"
 import {draftMode} from "next/headers"
 
+import {env} from "@/env"
 import {SanityLive} from "@/sanity/lib/live"
 
 import {DisableDraftMode} from "./_components/disable-draft-mode"
-
-const ENABLE_SANITY_LIVE = process.env.ENABLE_SANITY_LIVE === "true"
 
 export default async function FrontendLayout({
   children,
@@ -17,7 +16,7 @@ export default async function FrontendLayout({
   return (
     <>
       {children}
-      {ENABLE_SANITY_LIVE && <SanityLive />}
+      {env.ENABLE_SANITY_LIVE && <SanityLive />}
       <SpeedInsights />
       <Analytics />
       {(await draftMode()).isEnabled && (

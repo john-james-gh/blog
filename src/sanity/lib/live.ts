@@ -3,8 +3,11 @@
 // https://github.com/sanity-io/next-sanity#live-content-api for more information.
 import {defineLive} from "next-sanity/live"
 
+import {env} from "@/env"
+
 import {client} from "./client"
-import {token} from "./token"
+
+const token = env.SANITY_API_READ_TOKEN
 
 export const {sanityFetch, SanityLive} = defineLive({
   client,
