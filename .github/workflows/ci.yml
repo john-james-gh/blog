@@ -53,7 +53,7 @@ jobs:
           restore-keys: nextjs-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Build Next.js (includes typechecking)
-        run: pnpm build
+        run: pnpm nx build
 
       - name: Run ESLint
-        run: pnpm lint
+        run: pnpm nx lint
