@@ -13,5 +13,6 @@ test("page visual snapshot", async ({page}) => {
   // Take a screenshot and compare against baseline
   await expect(page).toHaveScreenshot("home-page.png", {
     fullPage: true,
+    maxDiffPixelRatio: 0.02, // Allow 2% pixel difference for cross-platform rendering
   })
 })
