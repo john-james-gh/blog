@@ -9,7 +9,6 @@
     "dev": "next dev --turbopack",
     "format": "prettier --write . && sort-package-json",
     "lint": "eslint",
-    "sanity": "sanity",
     "start": "next start",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
