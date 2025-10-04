@@ -53,7 +53,7 @@ jobs:
         run: pnpm exec playwright install --with-deps
 
       - name: Run Playwright tests
-        run: pnpm e2e
+        run: pnpm exec playwright test
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
