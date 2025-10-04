@@ -1,12 +1,16 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "production": ["default", "!{projectRoot}/src/e2e/**/*", "!{projectRoot}/.github/**/*"]
+  },
   "targetDefaults": {
-    "build": {"outputs": ["{projectRoot}/.next/**"], "cache": true},
+    "build": {"inputs": ["production"], "outputs": ["{projectRoot}/.next/**/*"], "cache": true},
     "typegen": {
       "outputs": ["{projectRoot}/src/sanity/types.ts", "{projectRoot}/src/sanity/extract.json"],
       "cache": true
     },
-    "test:e2e": {"outputs": ["{projectRoot}/test-results/**"], "cache": true},
+    "test:e2e": {"outputs": ["{projectRoot}/test-results/**/*"], "cache": true},
     "format": {"cache": true},
     "lint": {"cache": true}
   },
