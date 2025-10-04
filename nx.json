@@ -1,12 +1,19 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*"],
-    "production": ["default", "!{projectRoot}/src/e2e/**/*", "!{projectRoot}/.github/**/*"]
+    "sharedGlobals": [{"runtime": "node --version"}, {"runtime": "pnpm --version"}],
+    "default": ["sharedGlobals", "{projectRoot}/**/*"],
+    "production": [
+      "default",
+      "!{projectRoot}/src/e2e/**/*",
+      "!{projectRoot}/**/?(*.)+(spec|test).[tj]s?(x)",
+      "!{projectRoot}/.github/**/*"
+    ]
   },
   "targetDefaults": {
     "build": {"inputs": ["production"], "outputs": ["{projectRoot}/.next/**/*"], "cache": true},
     "typegen": {
+      "inputs": ["{projectRoot}/src/sanity/**/*", "{projectRoot}/sanity.*"],
       "outputs": ["{projectRoot}/src/sanity/types.ts", "{projectRoot}/src/sanity/extract.json"],
       "cache": true
     },
