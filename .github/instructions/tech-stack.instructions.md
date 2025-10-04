@@ -53,3 +53,7 @@ applyTo: "**"
   - `@types/node`: v24.3+ for Node.js types
   - `@types/react`: v19.1+ for React types
   - `@types/react-dom`: v19.1+ for React DOM types
+
+### Testing
+
+- **E2E Testing**: `@playwright/test` v1.55+ for end-to-end browser testing
