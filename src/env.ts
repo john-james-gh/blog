@@ -8,19 +8,13 @@ const envSchema = z.object({
   SANITY_API_READ_TOKEN: z.string().min(1),
 
   // App
-  NEXT_PUBLIC_URL: z.url().optional(),
-  VERCEL: z.string().optional(),
-  ENABLE_SANITY_LIVE: z
-    .string()
-    .default("false")
-    .transform((val) => val === "true"),
+  VERCEL_PROJECT_PRODUCTION_URL: z.url().optional(),
+  VERCEL: z.enum(["0", "1"]).default("0"),
+  ENABLE_SANITY_LIVE: z.enum(["0", "1"]).default("0"),
 })
 
 export const env = envSchema.parse(process.env)
 
-if (!env.NEXT_PUBLIC_URL && env.VERCEL) {
-  throw new Error("NEXT_PUBLIC_URL must be set in Vercel environment")
-}
-
 // Helper for base URL
-export const baseUrl = env.VERCEL ? env.NEXT_PUBLIC_URL! : "http://localhost:3000"
+export const baseUrl =
+  env.VERCEL === "1" ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000"

@@ -16,7 +16,7 @@ export default async function FrontendLayout({
   return (
     <>
       {children}
-      {env.ENABLE_SANITY_LIVE && <SanityLive />}
+      {env.ENABLE_SANITY_LIVE === "1" && <SanityLive />}
       <SpeedInsights />
       <Analytics />
       {(await draftMode()).isEnabled && (
