@@ -26,15 +26,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Enable Corepack
+        run: corepack enable pnpm
+
       # Cache the pnpm store (dependency tarballs) so installs are faster, but this does not touch the Next.js build output.
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: pnpm
-
-      - name: Enable Corepack
-        run: corepack enable pnpm
 
       - name: Install dependencies
         run: pnpm install
