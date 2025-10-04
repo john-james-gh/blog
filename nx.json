@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "outputs": ["{projectRoot}/.next/**"],
+      "cache": true
+    },
+    "typegen": {
+      "outputs": ["{projectRoot}/src/sanity/types.ts", "{projectRoot}/src/sanity/extract.json"],
+      "cache": true
+    },
+    "test:e2e": {
+      "outputs": ["{projectRoot}/test-results/**"],
+      "cache": true
+    },
+    "format": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  }
+}
