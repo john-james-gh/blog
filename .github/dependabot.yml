@@ -17,6 +17,9 @@ updates:
       interval: "daily"
     open-pull-requests-limit: 10
 
+    ignore:
+      - dependency-name: "eslint-plugin-react-hooks"
+
     groups:
       react-stack:
         patterns:
@@ -29,7 +32,7 @@ updates:
         patterns:
           - "next"
           - "eslint-config-next"
-          - "@next/eslint-plugin-next"
+          - "@next/*"
 
       tailwind-stack:
         patterns:
