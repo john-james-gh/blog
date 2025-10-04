@@ -8,7 +8,7 @@ const envSchema = z.object({
   SANITY_API_READ_TOKEN: z.string().min(1),
 
   // App
-  VERCEL_PROJECT_PRODUCTION_URL: z.url().optional(),
+  VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
   VERCEL: z.enum(["0", "1"]).default("0"),
   ENABLE_SANITY_LIVE: z.enum(["0", "1"]).default("0"),
 })
