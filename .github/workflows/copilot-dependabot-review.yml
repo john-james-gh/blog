@@ -71,11 +71,3 @@ jobs:
             await github.rest.pulls.update({ ...context.repo, pull_number: prNumber, body: newBody });
         env:
           LINES: ${{ steps.usage.outputs.lines }}
-
-      - name: Nudge Copilot (tiny ping so it re-evaluates)
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            🔎 Facts injected into PR description. Copilot, generate the Dependabot review using `.github/instructions/dependabot-pr-instructions.md`.
-            <!-- nonce: ${{ steps.usage.outputs.nonce }} -->
