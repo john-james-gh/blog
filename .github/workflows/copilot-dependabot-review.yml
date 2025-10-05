@@ -17,7 +17,38 @@ jobs:
         id: meta
         uses: dependabot/fetch-metadata@v2
 
-      - name: Post prompt for Copilot
+      - uses: actions/checkout@v4
+
+      - name: Install ripgrep
+        run: sudo apt-get update && sudo apt-get install -y ripgrep
+
+      - name: Import counts
+        id: usage
+        env:
+          PKGS: ${{ steps.meta.outputs.dependency-names }}
+        run: |
+          set -euo pipefail
+          IGNORE=(-g!**/node_modules/** -g!**/.next/** -g!**/dist/** -g!**/build/** -g!**/coverage/**)
+          exts="**/*.{ts,tsx,js,jsx,mjs,cjs}"
+          out=""
+          IFS=',' read -ra arr <<< "${PKGS}"
+          for raw in "${arr[@]}"; do
+            pkg="$(echo "$raw" | xargs)" || true
+            [ -z "$pkg" ] && continue
+            matches=$(rg -n --no-heading "${IGNORE[@]}" -g "$exts" \
+              -e "from\\s+['\"]${pkg}(['\"])|^\\s*import\\s+['\"]${pkg}['\"]" \
+              -e "require\\(\\s*['\"]${pkg}(/|['\"])"
+              -e "import\\(\\s*['\"]${pkg}(/|['\"])"
+              2>/dev/null || true)
+            files=$(printf "%s" "$matches" | cut -d: -f1 | sort -u | wc -l | tr -d ' ')
+            hits=$(printf "%s" "$matches" | wc -l | tr -d ' ')
+            out+="- \`${pkg}\`: **${files} files**, **${hits} imports**"$'\n'
+          done
+          echo "lines<<EOF" >> "$GITHUB_OUTPUT"
+          printf "%s" "$out" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Post facts + prompt Copilot
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -27,6 +58,8 @@ jobs:
             - Update type: `${{ steps.meta.outputs.update-type }}`
             - Dependency type: `${{ steps.meta.outputs.dependency-type }}`
             - Directory: `${{ steps.meta.outputs.directory }}`
+            - **Import usage**
+            ${{ steps.usage.outputs.lines }}
 
             @copilot, generate the *Dependabot PR Review* per `.github/instructions/dependabot-pr.instructions.md`.
             If you cannot search the entire repo, say so and base your analysis on the diff and facts above.
