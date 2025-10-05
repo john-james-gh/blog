@@ -84,6 +84,7 @@ Extract from PR title or description:
 
 ## Comment Format
 
+Use **real line breaks**, not `\n`.  
 Post a comment to the PR with this structure for each updated dependency:
 
 🤖 Dependabot PR Review
