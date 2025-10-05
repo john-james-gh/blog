@@ -1,0 +1,80 @@
+name: Dependabot → Copilot CLI review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  copilot-cli-review:
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    env:
+      # Fine-grained PAT with "Copilot Requests" permission.
+      # Add it in repo/org secrets as COPILOT_PAT.
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable pnpm
+
+      - name: Setup Node (Copilot CLI needs Node 22+)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Copilot CLI
+        run: npm i -g @github/copilot
+
+      # Optional: fetch a tiny bit of PR context for the prompt
+      - name: Pull PR metadata
+        id: meta
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request
+            core.setOutput('title', pr.title)
+            core.setOutput('url', pr.html_url)
+            core.setOutput('number', pr.number)
+
+      # If you already computed import counts elsewhere, drop them in IMPORT_FACTS
+      - name: Build prompt
+        id: prompt
+        env:
+          IMPORT_FACTS: "" # e.g. "- `next`: 14 files, 21 imports"
+        run: |
+          cat > /tmp/prompt.txt <<'TXT'
+          You are reviewing a Dependabot PR. Output GitHub Markdown only, no code fences.
+
+          Use this format:
+
+          ## 🤖 Dependabot PR Review
+          **PR:** ${URL}
+          **Title:** ${TITLE}
+
+          ### Facts
+          ${IMPORT_FACTS:-"N/A - import usage not computed"}
+
+          ### Findings
+          - Is the package used once? <answer>
+          - Can it be removed/replaced? <answer>
+          - Do I need new tests? <answer>
+
+          ### Recommendation
+          - Action: <approve|review|block> – <one-line reason>
+          TXT
+
+      - name: Run Copilot CLI (non-interactive, deny tools)
+        id: run
+        run: |
+          copilot --deny-tool='*' --no-banner --log-level=warn < /tmp/prompt.txt > /tmp/review.md
+
+      - name: Post review as comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: ${{ github.job }} run\n\n$(cat /tmp/review.md)
