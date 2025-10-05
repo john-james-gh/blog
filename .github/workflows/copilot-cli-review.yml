@@ -27,14 +27,17 @@ jobs:
       - name: Install Copilot CLI
         run: npm i -g @github/copilot
 
-      - name: Run Copilot CLI (simple prompt, use repo instructions)
+      # simplest: allow all tools + allow the workspace directory
+      - name: Run Copilot CLI
         run: |
-          printf "%s\n" \
-            "Review this Dependabot PR using the repository's Copilot instructions." \
-            "Output GitHub Markdown only, no code fences, real line breaks." \
-            "PR: ${{ github.event.pull_request.html_url }}" \
-            "Title: ${{ github.event.pull_request.title }}" \
-          | copilot > /tmp/review.md
+          copilot \
+            --allow-all-tools \
+            --add-dir "$GITHUB_WORKSPACE" \
+            -p "Review this Dependabot PR using the repo’s Copilot instructions.
+          PR: ${{ github.event.pull_request.html_url }}
+          Title: ${{ github.event.pull_request.title }}
+          Output GitHub Markdown only, no code fences." \
+                  > /tmp/review.md
 
       - name: Post review as PR comment
         uses: peter-evans/create-or-update-comment@v4
