@@ -64,7 +64,7 @@ importers:
         specifier: ^15.5.4
         version: 15.5.4
       '@next/eslint-plugin-next':
-        specifier: ^15.5.4
+        specifier: ^15.5.3
         version: 15.5.4
       '@playwright/test':
         specifier: ^1.55.1
@@ -100,13 +100,13 @@ importers:
         specifier: 6.1.0
         version: 6.1.0(eslint@9.37.0(jiti@2.6.1))
       nx:
-        specifier: 21.6.3
-        version: 21.6.3
+        specifier: 21.6.2
+        version: 21.6.2
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
       prettier-plugin-tailwindcss:
-        specifier: ^0.6.14
+        specifier: ^0.6.13
         version: 0.6.14(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.6.2))(prettier@3.6.2)
       sort-package-json:
         specifier: ^3.4.0
@@ -4818,8 +4818,8 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nx@21.6.3:
-    resolution: {integrity: sha512-CD/R7JV9OWy1UNsm6BOAMvH7m7EpqDKVHbBjoR8wmxYaTKkOQ9lPpi5yYIyRPpONK/uHCqYyeKa2cM3zP6euqw==}
+  nx@21.6.2:
+    resolution: {integrity: sha512-bFZgAsB838vn9kk1vI6a1A9sStKyOA7Q9Ifsx7fYPth3D0GafHKu7X2/YbsC4h1TpmuejkJCPWUw2WtCOQy6IQ==}
     hasBin: true
     peerDependencies:
       '@swc-node/register': ^1.8.0
@@ -11711,7 +11711,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nx@21.6.3:
+  nx@21.6.2:
     dependencies:
       '@napi-rs/wasm-runtime': 0.2.4
       '@yarnpkg/lockfile': 1.1.0
