@@ -15,6 +15,5 @@ const envSchema = z.object({
 
 export const env = envSchema.parse(process.env)
 
-// Helper for base URL
 export const baseUrl =
   env.VERCEL === "1" ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000"
