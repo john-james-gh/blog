@@ -8,21 +8,30 @@ permissions:
   contents: read
   pull-requests: write
 
+env:
+  # Fine-grained PAT with "Copilot Requests" permission
+  GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+  XDG_CONFIG_HOME: $RUNNER_TEMP/.config
+
 jobs:
   copilot-cli-review:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
-    env:
-      # Fine-grained PAT with "Copilot Requests" permission
-      GH_TOKEN: ${{ secrets.COPILOT_PAT }}
-      XDG_CONFIG_HOME: $RUNNER_TEMP/.config
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v5
 
-      - name: Setup Node (Copilot CLI)
-        uses: actions/setup-node@v4
+      - name: Enable Corepack
+        run: corepack enable pnpm
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 22 # Copilot CLI requires Node.js 22+
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Install Copilot CLI
         run: npm i -g @github/copilot
@@ -31,13 +40,18 @@ jobs:
       - name: Run Copilot CLI
         run: |
           copilot \
-            --allow-all-tools \
-            --add-dir "$GITHUB_WORKSPACE" \
-            -p "Review this Dependabot PR using the repo’s Copilot instructions.
+          --model claude-sonnet-4 \
+          --allow-tool 'shell(grep:*)' \
+          --allow-tool 'shell(find:*)' \
+          --allow-tool 'shell(wc|cut|sort|head|ls|cat|curl:*)' \
+          --allow-tool 'git(log|diff|show|rev-parse)' \
+          --allow-tool 'gh(pr view)' \
+          --add-dir "$GITHUB_WORKSPACE" \
+          -p "Review this Dependabot PR using the repo’s Copilot instructions.
           PR: ${{ github.event.pull_request.html_url }}
           Title: ${{ github.event.pull_request.title }}
           Output GitHub Markdown only, no code fences." \
-                  > /tmp/review.md
+          > /tmp/review.md
 
       - name: Post review as PR comment
         uses: peter-evans/create-or-update-comment@v4
