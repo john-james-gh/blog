@@ -1,146 +1,19 @@
 name: Discover Copilot Reviewer API Format
 
 on:
-  workflow_dispatch:
-    inputs:
-      pr_number:
-        description: "PR number to inspect (should have Copilot requested as reviewer via UI)"
-        required: true
-        type: number
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 permissions:
   pull-requests: read
-  contents: read
 
 jobs:
   discover:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Get PR details
-        id: pr-details
+      - name: Show reviewer names
         env:
           GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pr_number }}
         run: |
-          echo "## PR Details for #${PR_NUMBER}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          # Get full PR data
-          echo "### Full PR Data" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          gh api "/repos/${{ github.repository }}/pulls/${PR_NUMBER}" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-      - name: Get requested reviewers
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pr_number }}
-        run: |
-          echo "### Requested Reviewers" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          gh api "/repos/${{ github.repository }}/pulls/${PR_NUMBER}" \
-            --jq '.requested_reviewers' >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-      - name: Get requested teams
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pr_number }}
-        run: |
-          echo "### Requested Teams" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          gh api "/repos/${{ github.repository }}/pulls/${PR_NUMBER}" \
-            --jq '.requested_teams' >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-      - name: Get all reviews
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pr_number }}
-        run: |
-          echo "### All Reviews" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          gh api "/repos/${{ github.repository }}/pulls/${PR_NUMBER}/reviews" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-      - name: Search for Copilot references
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pr_number }}
-        run: |
-          echo "### Searching for Copilot References" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          # Get full JSON and search for copilot-related fields
-          PR_JSON=$(gh api "/repos/${{ github.repository }}/pulls/${PR_NUMBER}")
-
-          echo "**Searching for 'copilot' in PR JSON:**" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "$PR_JSON" | grep -i "copilot" || echo "No 'copilot' references found" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          echo "**All reviewer-related fields:**" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          echo "$PR_JSON" | jq '{
-            requested_reviewers,
-            requested_teams,
-            assignees,
-            assignee
-          }' >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-
-      - name: Try requesting Copilot as reviewer
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pr_number }}
-        run: |
-          echo "### Attempting to Request Copilot as Reviewer" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          # Try different possible formats
-          echo "**Attempt 1: Using 'copilot' as username**" >> $GITHUB_STEP_SUMMARY
-          gh api \
-            --method POST \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/${{ github.repository }}/pulls/${PR_NUMBER}/requested_reviewers" \
-            -f "reviewers[]=copilot" 2>&1 | tee -a $GITHUB_STEP_SUMMARY || true
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          echo "**Attempt 2: Using 'github-copilot[bot]' as username**" >> $GITHUB_STEP_SUMMARY
-          gh api \
-            --method POST \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/${{ github.repository }}/pulls/${PR_NUMBER}/requested_reviewers" \
-            -f "reviewers[]=github-copilot[bot]" 2>&1 | tee -a $GITHUB_STEP_SUMMARY || true
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          echo "**Attempt 3: Using 'copilot' as team**" >> $GITHUB_STEP_SUMMARY
-          gh api \
-            --method POST \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/${{ github.repository }}/pulls/${PR_NUMBER}/requested_reviewers" \
-            -f "team_reviewers[]=copilot" 2>&1 | tee -a $GITHUB_STEP_SUMMARY || true
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-      - name: Summary
-        run: |
-          echo "## How to Use This Workflow" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "1. Create or open a PR" >> $GITHUB_STEP_SUMMARY
-          echo "2. Manually request Copilot as a reviewer via the GitHub UI" >> $GITHUB_STEP_SUMMARY
-          echo "3. Run this workflow with the PR number" >> $GITHUB_STEP_SUMMARY
-          echo "4. Check the output above to see how Copilot appears in the API" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "This will reveal the correct format for requesting Copilot as a reviewer programmatically." >> $GITHUB_STEP_SUMMARY
+          gh api "/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" \
+            --jq '.requested_reviewers[].login'
