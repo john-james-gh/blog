@@ -84,44 +84,51 @@ Extract from PR title or description:
 
 ## Comment Format
 
-Use **real line breaks**, not `\n`.  
-Post a comment to the PR with this structure for each updated dependency:
+IMPORTANT: Use actual blank lines between sections (press Enter twice), NOT the literal characters \n or any escape sequences.
+Post a comment to the PR with this exact structure for each updated dependency:
 
-🤖 Dependabot PR Review
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 DEPENDABOT PR REVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📦 Package: `<package-name>`
+📦 PACKAGE: <package-name>
 
-**Version Change**: `old.version` → `new.version` (**Major/Minor/Patch**)
+VERSION CHANGE: old.version → new.version (Major/Minor/Patch)
 
-📊 Facts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 FACTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-- **Usage Count**: Used in X files across Y import locations
-- **Affected Projects**: `project-a`, `project-b` (or "N/A - single project")
-- **Dev-only**: Yes/No
-- **Changelog**: [View changes](changelog-url)
-- **Known Codemod**: Yes - `npx command` / No
+• Usage Count: Used in X files across Y import locations
+• Affected Projects: project-a, project-b (or "N/A - single project")
+• Dev-only: Yes/No
+• Changelog: <changelog-url>
+• Known Codemod: Yes - npx command / No
 
-✅ Review Findings
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ REVIEW FINDINGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-**Is the package used once?**
+IS THE PACKAGE USED ONCE?
 [Your analysis - e.g., "No, widely used across 15 components"]
 
-**Can it be removed and rewritten?**
+CAN IT BE REMOVED AND REWRITTEN?
 [Your assessment - e.g., "Not recommended. This is a core framework dependency with complex functionality"]
 
-**Do I need new tests?**
+DO I NEED NEW TESTS?
 [Your recommendation - e.g., "Yes, the changelog indicates breaking changes to the API. Recommend testing:
+• Feature X behavior
+• Integration with Y component"]
 
-- Feature X behavior
-- Integration with Y component"]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚦 RECOMMENDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🚦 Recommendation
+ACTION: ✅ Approve and merge / ⚠️ Review required / ❌ Do not merge
 
-**Action**: ✅ Approve and merge / ⚠️ Review required / ❌ Do not merge
+REASONING: [Brief explanation]
 
-**Reasoning**: [Brief explanation]
-
-**Next Steps**:
+NEXT STEPS:
 
 1. [Specific action items if needed]
 2. [E.g., "Run codemod before merging"]

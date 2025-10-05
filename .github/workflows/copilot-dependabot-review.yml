@@ -29,7 +29,4 @@ jobs:
             - Directory: `${{ steps.meta.outputs.directory }}`
 
             @copilot, generate the *Dependabot PR Review* per `.github/instructions/dependabot-pr.instructions.md`.
-            Write your reply as **GitHub Markdown only**.
-            Use **real line breaks**, not `\n`.  
-            **Do not** wrap the whole reply in a code block.
             If you cannot search the entire repo, say so and base your analysis on the diff and facts above.
