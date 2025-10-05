@@ -82,32 +82,15 @@ Extract from PR title or description:
   - npm: `https://www.npmjs.com/package/<name>/v/<version>`
   - GitHub: Check package.json repository field for CHANGELOG.md
 
-### Codemod Availability
-
-Check for official codemods:
-
-- Search package repository for codemod tools
-- Check for `@<package-name>/codemod` packages
-- Look for migration guides in changelog
-- Common codemod patterns:
-  - `npx <package>-codemod`
-  - `npx @<scope>/codemod`
-  - Referenced in CHANGELOG or MIGRATION.md
-
-Report: "Known codemod: Yes (command: `<command>`) / No"
-
 ## Comment Format
 
-Post a comment to the PR with this structure:
+Post a comment to the PR with this structure for each updated dependency:
 
-```markdown
 ## 🤖 Dependabot PR Review
 
 ### 📦 Package: `<package-name>`
 
 **Version Change**: `old.version` → `new.version` (**Major/Minor/Patch**)
-
----
 
 ### 📊 Facts
 
@@ -116,8 +99,6 @@ Post a comment to the PR with this structure:
 - **Dev-only**: Yes/No
 - **Changelog**: [View changes](changelog-url)
 - **Known Codemod**: Yes - `npx command` / No
-
----
 
 ### ✅ Review Findings
 
@@ -133,8 +114,6 @@ Post a comment to the PR with this structure:
 - Feature X behavior
 - Integration with Y component"]
 
----
-
 ### 🚦 Recommendation
 
 **Action**: ✅ Approve and merge / ⚠️ Review required / ❌ Do not merge
@@ -146,4 +125,3 @@ Post a comment to the PR with this structure:
 1. [Specific action items if needed]
 2. [E.g., "Run codemod before merging"]
 3. [E.g., "Add tests for new API"]
-```
