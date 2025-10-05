@@ -69,7 +69,7 @@ jobs:
       - name: Run Copilot CLI (non-interactive, deny tools)
         id: run
         run: |
-          copilot --deny-tool='*' < /tmp/prompt.txt > /tmp/review.md
+          copilot < /tmp/prompt.txt > /tmp/review.md
 
       - name: Post review as comment
         uses: peter-evans/create-or-update-comment@v4
