@@ -41,11 +41,7 @@ jobs:
         run: |
           copilot \
           --model claude-sonnet-4 \
-          --allow-tool 'shell(grep:*)' \
-          --allow-tool 'shell(find:*)' \
-          --allow-tool 'shell(wc|cut|sort|head|ls|cat|curl:*)' \
-          --allow-tool 'git(log|diff|show|rev-parse)' \
-          --allow-tool 'gh(pr view)' \
+          --allow-all-tools \
           --add-dir "$GITHUB_WORKSPACE" \
           -p "Review this Dependabot PR using the repo’s Copilot instructions.
           PR: ${{ github.event.pull_request.html_url }}
