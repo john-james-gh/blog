@@ -84,7 +84,13 @@ Extract from PR title or description:
 
 ## Comment Format
 
-IMPORTANT: Use actual blank lines between sections (press Enter twice), NOT the literal characters \n or any escape sequences.
+CRITICAL FORMATTING RULES:
+
+1. NEVER use the literal text "\n" in your output - GitHub comments use actual line breaks
+2. Use real blank lines (press Enter to create new lines) between sections
+3. The template below already has proper spacing - copy it exactly as shown
+4. Do not add any "\n" characters, "\n\n" sequences, or escape codes
+
 Post a comment to the PR with this exact structure for each updated dependency:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
