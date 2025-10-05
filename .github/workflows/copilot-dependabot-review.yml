@@ -1,4 +1,4 @@
-name: Copilot → Dependabot Review (simple)
+name: Copilot Dependabot Review
 
 on:
   pull_request:
@@ -16,9 +16,6 @@ jobs:
       - name: Fetch Dependabot metadata
         id: meta
         uses: dependabot/fetch-metadata@v2
-        with:
-          # leave defaults; no PAT needed unless you enable alert/compat lookups
-          github-token: ${{ github.token }}
 
       - name: Post prompt for Copilot
         uses: peter-evans/create-or-update-comment@v4
