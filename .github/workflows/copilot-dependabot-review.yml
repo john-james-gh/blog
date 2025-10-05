@@ -68,8 +68,8 @@ jobs:
             - Update type: `${{ steps.meta.outputs.update-type }}`
             - Dependency type: `${{ steps.meta.outputs.dependency-type }}`
             - Directory: `${{ steps.meta.outputs.directory }}`
-            - **Import usage**
+            - Import usage
             ${{ steps.usage.outputs.lines }}
 
-            **Copilot**: reply in plain GitHub Markdown, no code fences, real line breaks.
-            Use `.github/instructions/dependabot-pr-instructions.md` to format the review.
+            @copilot: Generate a report for this Dependabot PR using the facts above.
+            Use `.github/instructions/dependabot-pr-instructions.md`.
