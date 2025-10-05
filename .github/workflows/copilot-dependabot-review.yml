@@ -27,6 +27,10 @@ jobs:
           FILES=( ':(glob)**/*.ts' ':(glob)**/*.tsx' ':(glob)**/*.js' ':(glob)**/*.jsx' ':(glob)**/*.mjs' ':(glob)**/*.cjs'
                   ':!node_modules/**' ':!.next/**' ':!dist/**' ':!build/**' ':!coverage/**' ':!.turbo/**' )
           esc() { printf '%s' "$1" | sed -E 's/[][(){}.^$|*+?\\]/\\&/g'; }
+
+          # Get project name from package.json or default to "blog"
+          project_name="$(jq -r '.name // "blog"' package.json 2>/dev/null || echo "blog")"
+
           out=""
           IFS=',' read -ra arr <<< "${PKGS}"
           for raw in "${arr[@]}"; do
@@ -39,7 +43,12 @@ jobs:
             matches="$(git grep -n -I -E "${p1}|${p2}|${p3}|${p4}" -- "${FILES[@]}" || true)"
             files="$(printf "%s" "$matches" | cut -d: -f1 | sort -u | wc -l | tr -d ' ')"
             hits="$(printf "%s" "$matches" | wc -l | tr -d ' ')"
-            out+="- \`${pkg}\`: **${files} files**, **${hits} imports**"$'\n'
+            
+            if [ "$files" -gt 0 ]; then
+              out+="- \`${pkg}\`: **${files} files**, **${hits} imports** (in \`${project_name}\`)"$'\n'
+            else
+              out+="- \`${pkg}\`: **0 files**, **0 imports**"$'\n'
+            fi
           done
           echo "lines<<EOF" >> $GITHUB_OUTPUT
           printf "%s" "$out" >> $GITHUB_OUTPUT
