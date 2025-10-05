@@ -107,8 +107,6 @@ Post a comment to the PR with this structure:
 
 **Version Change**: `old.version` → `new.version` (**Major/Minor/Patch**)
 
----
-
 ### 📊 Facts
 
 - **Usage Count**: Used in X files across Y import locations
@@ -116,8 +114,6 @@ Post a comment to the PR with this structure:
 - **Dev-only**: Yes/No
 - **Changelog**: [View changes](changelog-url)
 - **Known Codemod**: Yes - `npx command` / No
-
----
 
 ### ✅ Review Findings
 
@@ -132,8 +128,6 @@ Post a comment to the PR with this structure:
 
 - Feature X behavior
 - Integration with Y component"]
-
----
 
 ### 🚦 Recommendation
 
