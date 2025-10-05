@@ -1,26 +1,22 @@
-name: Copilot Dependabot Review
+name: Dependabot → Facts + Copilot
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: read
   pull-requests: write
 
 jobs:
-  prompt-copilot:
+  facts:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch Dependabot metadata
-        id: meta
+      - id: meta
         uses: dependabot/fetch-metadata@v2
 
       - uses: actions/checkout@v4
-
-      - name: Install ripgrep
-        run: sudo apt-get update && sudo apt-get install -y ripgrep
 
       - name: Import counts
         id: usage
@@ -28,22 +24,34 @@ jobs:
           PKGS: ${{ steps.meta.outputs.dependency-names }}
         run: |
           set -euo pipefail
-          IGNORE=(-g!**/node_modules/** -g!**/.next/** -g!**/dist/** -g!**/build/** -g!**/coverage/**)
-          exts="**/*.{ts,tsx,js,jsx,mjs,cjs}"
+
+          GLOBS=( '*.ts' '*.tsx' '*.js' '*.jsx' '*.mjs' '*.cjs' )
+          EXCLUDES=( ':(exclude)node_modules/*' ':(exclude).next/*' ':(exclude)dist/*' ':(exclude)build/*' ':(exclude)coverage/*' ':(exclude).turbo/*' )
+
+          escape() { printf '%s' "$1" | sed -E 's/[][(){}.^$|*+?\\]/\\&/g'; }
+
           out=""
           IFS=',' read -ra arr <<< "${PKGS}"
           for raw in "${arr[@]}"; do
-            pkg="$(echo "$raw" | xargs)" || true
+            pkg="$(echo "$raw" | xargs)"
             [ -z "$pkg" ] && continue
-            matches=$(rg -n --no-heading "${IGNORE[@]}" -g "$exts" \
-              -e "from\\s+['\"]${pkg}(['\"])|^\\s*import\\s+['\"]${pkg}['\"]" \
-              -e "require\\(\\s*['\"]${pkg}(/|['\"])"
-              -e "import\\(\\s*['\"]${pkg}(/|['\"])"
-              2>/dev/null || true)
+
+            # Escape regex specials, keep '/' so we can match subpaths
+            esc="$(escape "$pkg")"
+
+            # Match:
+            #  import ... from 'pkg' or 'pkg/...'
+            #  import 'pkg' or 'pkg/...'
+            #  require('pkg') or require('pkg/...')
+            #  import('pkg') or import('pkg/...')
+            pat="from[[:space:]]+['\"]${esc}(?:/[^'\"]*)?['\"]|^[[:space:]]*import[[:space:]]+['\"]${esc}(?:/[^'\"]*)?['\"]|require\\([[:space:]]*['\"]${esc}(?:/[^'\"]*)?['\"]\\)|import\\([[:space:]]*['\"]${esc}(?:/[^'\"]*)?['\"]\\)"
+
+            matches=$(git grep -n -I -E "$pat" -- "${GLOBS[@]}" -- . "${EXCLUDES[@]}" || true)
             files=$(printf "%s" "$matches" | cut -d: -f1 | sort -u | wc -l | tr -d ' ')
             hits=$(printf "%s" "$matches" | wc -l | tr -d ' ')
             out+="- \`${pkg}\`: **${files} files**, **${hits} imports**"$'\n'
           done
+
           echo "lines<<EOF" >> "$GITHUB_OUTPUT"
           printf "%s" "$out" >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"
@@ -61,5 +69,5 @@ jobs:
             - **Import usage**
             ${{ steps.usage.outputs.lines }}
 
-            @copilot, generate the *Dependabot PR Review* per `.github/instructions/dependabot-pr.instructions.md`.
-            If you cannot search the entire repo, say so and base your analysis on the diff and facts above.
+            **Copilot**: reply in plain GitHub Markdown, no code fences, real line breaks.
+            Use `.github/instructions/dependabot-pr-instructions.md` to format the review.
