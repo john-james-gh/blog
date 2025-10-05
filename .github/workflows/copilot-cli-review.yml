@@ -15,7 +15,7 @@ jobs:
     env:
       # Fine-grained PAT with "Copilot Requests" permission
       GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
-      XDG_CONFIG_HOME: ${{ runner.temp }}/.config
+      XDG_CONFIG_HOME: $RUNNER_TEMP/.config
     steps:
       - uses: actions/checkout@v4
 
