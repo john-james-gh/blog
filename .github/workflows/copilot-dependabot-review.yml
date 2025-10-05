@@ -1,8 +1,8 @@
-name: Dependabot → Copilot CLI review
+name: Copilot CLI Dependabot review
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened]
 
 permissions:
   contents: read
@@ -10,7 +10,7 @@ permissions:
 
 env:
   # Fine-grained PAT with "Copilot Requests" permission
-  GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
+  GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }} # does not need to be a dependabot secret
   XDG_CONFIG_HOME: $RUNNER_TEMP/.config
 
 jobs:
@@ -36,7 +36,6 @@ jobs:
       - name: Install Copilot CLI
         run: npm i -g @github/copilot
 
-      # simplest: allow all tools + allow the workspace directory
       - name: Run Copilot CLI
         run: |
           copilot \
