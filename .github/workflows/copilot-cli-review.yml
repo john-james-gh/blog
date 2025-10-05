@@ -40,8 +40,9 @@ jobs:
       - name: Run Copilot CLI
         run: |
           copilot \
-          --model claude-sonnet-4 \
+          --model claude-sonnet-4.5 \
           --allow-all-tools \
+          --deny-tool 'shell(git push)'
           --add-dir "$GITHUB_WORKSPACE" \
           -p "Review this Dependabot PR using the repo’s Copilot instructions.
           PR: ${{ github.event.pull_request.html_url }}
