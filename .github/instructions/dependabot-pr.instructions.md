@@ -86,13 +86,13 @@ Extract from PR title or description:
 
 Post a comment to the PR with this structure for each updated dependency:
 
-## 🤖 Dependabot PR Review
+🤖 Dependabot PR Review
 
-### 📦 Package: `<package-name>`
+📦 Package: `<package-name>`
 
 **Version Change**: `old.version` → `new.version` (**Major/Minor/Patch**)
 
-### 📊 Facts
+📊 Facts
 
 - **Usage Count**: Used in X files across Y import locations
 - **Affected Projects**: `project-a`, `project-b` (or "N/A - single project")
@@ -100,7 +100,7 @@ Post a comment to the PR with this structure for each updated dependency:
 - **Changelog**: [View changes](changelog-url)
 - **Known Codemod**: Yes - `npx command` / No
 
-### ✅ Review Findings
+✅ Review Findings
 
 **Is the package used once?**
 [Your analysis - e.g., "No, widely used across 15 components"]
@@ -114,7 +114,7 @@ Post a comment to the PR with this structure for each updated dependency:
 - Feature X behavior
 - Integration with Y component"]
 
-### 🚦 Recommendation
+🚦 Recommendation
 
 **Action**: ✅ Approve and merge / ⚠️ Review required / ❌ Do not merge
 
