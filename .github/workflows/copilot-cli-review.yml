@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Fine-grained PAT with "Copilot Requests" permission
-      GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+      GH_TOKEN: ${{ secrets.COPILOT_PAT }}
       XDG_CONFIG_HOME: $RUNNER_TEMP/.config
     steps:
       - uses: actions/checkout@v4
