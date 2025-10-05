@@ -1,0 +1,35 @@
+name: Copilot Dependabot Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  prompt-copilot:
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@v2
+
+      - name: Post prompt for Copilot
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🧪 **Dependabot facts**
+            - Packages: `${{ steps.meta.outputs.dependency-names }}`
+            - Update type: `${{ steps.meta.outputs.update-type }}`
+            - Dependency type: `${{ steps.meta.outputs.dependency-type }}`
+            - Directory: `${{ steps.meta.outputs.directory }}`
+
+            @copilot, generate the *Dependabot PR Review* per `.github/instructions/dependabot-pr.instructions.md`.
+            Write your reply as **GitHub Markdown only**.
+            Use **real line breaks**, not `\n`.  
+            **Do not** wrap the whole reply in a code block.
+            If you cannot search the entire repo, say so and base your analysis on the diff and facts above.
