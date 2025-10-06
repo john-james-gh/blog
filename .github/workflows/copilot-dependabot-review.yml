@@ -46,11 +46,11 @@ jobs:
           -p "Review this Dependabot PR using the repo’s Copilot instructions.
           PR: ${{ github.event.pull_request.html_url }}
           Title: ${{ github.event.pull_request.title }}
-          Output GitHub Markdown only, no code fences." \
+          Output GitHub Markdown only, and post a comment in the PR with the result." \
           > /tmp/review.md
 
-      - name: Post review as PR comment
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body-path: /tmp/review.md
+      # - name: Post review as PR comment
+      #   uses: peter-evans/create-or-update-comment@v4
+      #   with:
+      #     issue-number: ${{ github.event.pull_request.number }}
+      #     body-path: /tmp/review.md
