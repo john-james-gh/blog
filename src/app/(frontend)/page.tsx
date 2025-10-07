@@ -19,9 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "John James Blog",
       title: "John James Blog",
       description: "Notes on web, JS/TS, CI/CD, and experiments.",
-      // If you don’t have a dedicated OG image yet, either omit `images`
-      // or point to a generic site-wide image. Best practice is to add one:
-      // images: [{ url: "/og/home.png", width: 1200, height: 630 }],
+      images: [{url: "/og/home.png", width: 800, height: 300}],
     },
   }
 }
