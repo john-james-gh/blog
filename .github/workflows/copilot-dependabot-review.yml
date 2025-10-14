@@ -2,7 +2,7 @@ name: Copilot CLI Dependabot review
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened]
 
 permissions:
   contents: read
@@ -10,8 +10,7 @@ permissions:
 
 env:
   # Fine-grained PAT with "Copilot Requests" permission
-  GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }} # does not need to be a dependabot secret
-  XDG_CONFIG_HOME: $RUNNER_TEMP/.config
+  GITHUB_TOKEN: ${{ secrets.COPILOT_PAT }}
 
 jobs:
   copilot-cli-review:
