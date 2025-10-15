@@ -61,8 +61,8 @@ importers:
         specifier: ^3
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.340
-        version: 0.0.340
+        specifier: ^0.0.341
+        version: 0.0.341
       '@next/env':
         specifier: ^15.5.5
         version: 15.5.5
@@ -1120,8 +1120,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.340':
-    resolution: {integrity: sha512-WFLSqWoyJzWxLzcTkyd46zbzfBQ0BuyEULdOp2BmE82ABFutCSItl+OhflIwZvoHNs3oEMgIOKjnGeWJM2C3SQ==}
+  '@github/copilot@0.0.341':
+    resolution: {integrity: sha512-Ti/aenIMkHP9H171AOlH0aHoQGBTIKCEE+Vk4STaKNcWrnNe9Nuevbc91935nuHki4YRhBW+3lY4WZF6h9oqXQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -7625,7 +7625,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.340':
+  '@github/copilot@0.0.341':
     dependencies:
       keytar-forked-forked: 7.10.3
       node-pty: '@devm33/node-pty@1.0.9'
