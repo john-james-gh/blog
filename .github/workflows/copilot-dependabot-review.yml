@@ -41,6 +41,7 @@ jobs:
           --model claude-sonnet-4.5 \
           --allow-all-tools \
           --deny-tool 'shell(git push)' \
+          --deny-tool 'write' \
           --add-dir "$GITHUB_WORKSPACE" \
           -p "Review this Dependabot PR using the repo’s Copilot instructions.
           PR: ${{ github.event.pull_request.html_url }}
@@ -48,6 +49,13 @@ jobs:
           Body: ${{ github.event.pull_request.body }}
           Output GitHub Markdown only, no code fences." \
           > /tmp/review.md
+
+      - name: Upload full review output
+        uses: actions/upload-artifact@v4
+        with:
+          name: copilot-full-review
+          path: /tmp/review.md
+          retention-days: 7
 
       - name: Trim Copilot output to the review section
         run: |
