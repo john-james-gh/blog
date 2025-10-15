@@ -2,7 +2,7 @@ name: Copilot CLI Dependabot review
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 permissions:
   contents: read
@@ -49,6 +49,13 @@ jobs:
           Body: ${{ github.event.pull_request.body }}
           Output GitHub Markdown only, no code fences." \
           > /tmp/review.md
+
+      - name: Upload full review output
+        uses: actions/upload-artifact@v4
+        with:
+          name: copilot-full-review
+          path: /tmp/review.md
+          retention-days: 7
 
       - name: Trim Copilot output to the review section
         run: |
