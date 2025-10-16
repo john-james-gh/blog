@@ -37,9 +37,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Copilot CLI
+        run: npm i -g @github/copilot
+
       - name: Run Copilot CLI
         run: |
-          pnpm copilot \
+          copilot \
           --model claude-sonnet-4.5 \
           --allow-all-tools \
           --deny-tool 'shell(git push)' \
