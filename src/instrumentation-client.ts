@@ -14,6 +14,7 @@ Sentry.init({
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
+  enabled: process.env.NODE_ENV === "production",
 })
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart
