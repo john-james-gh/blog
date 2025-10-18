@@ -48,7 +48,7 @@ jobs:
           --deny-tool 'shell(git push)' \
           --deny-tool 'write' \
           --add-dir "$GITHUB_WORKSPACE" \
-          -p "Review this Dependabot PR using the repo’s Copilot instructions. Do not try to access directories outside the repo. Do not try to write. You do not have access. Do not use /dev/null | wc -l command.
+          -p "Review this Dependabot PR using the repo’s Copilot instructions. Do not try to access directories outside the repo. Do not try to write. You do not have access. Do not use /dev/null command. It's buggy.
           PR: ${{ github.event.pull_request.html_url }}
           Title: ${{ github.event.pull_request.title }}
           Body: ${{ github.event.pull_request.body }}
