@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 export default function SentryServerErrorTestPage() {
   throw new Error("This is a test error for server.")
   return (
