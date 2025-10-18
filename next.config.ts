@@ -28,4 +28,7 @@ export default withSentryConfig(nextConfig, {
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
   authToken: process.env.SENTRY_AUTH_TOKEN ?? undefined,
+  release: {
+    create: process.env.VERCEL === "1",
+  },
 })
