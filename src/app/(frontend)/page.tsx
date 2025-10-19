@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs"
 import type {Metadata} from "next/dist/lib/metadata/types/metadata-interface"
 import Image from "next/image"
 import Link from "next/link"
@@ -51,8 +52,17 @@ const generateIndexJsonLd = (posts: POSTS_QUERYResult): WithContext<CollectionPa
   },
 })
 
+const getPosts = async () => {
+  try {
+    return await sanityFetch({query: POSTS_QUERY})
+  } catch (error) {
+    Sentry.logger.error("Error fetching posts data", {error})
+    throw error
+  }
+}
+
 export default async function Page() {
-  const {data: posts} = await sanityFetch({query: POSTS_QUERY})
+  const {data: posts} = await getPosts()
 
   const websiteJson = JSON.stringify(generateWebsiteJsonLd())
   const indexJson = JSON.stringify(generateIndexJsonLd(posts))

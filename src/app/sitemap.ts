@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs"
 import type {MetadataRoute} from "next"
 
 import {baseUrl} from "@/env"
@@ -19,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     }))
   } catch (error) {
-    console.error("Failed to generate sitemap:", error)
+    Sentry.logger.error("Error fetching sitemap data", {error})
     return []
   }
 }
