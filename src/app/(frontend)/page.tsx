@@ -54,7 +54,7 @@ const generateIndexJsonLd = (posts: POSTS_QUERYResult): WithContext<CollectionPa
 
 const getPosts = async () => {
   try {
-    return sanityFetch({query: POSTS_QUERY})
+    return await sanityFetch({query: POSTS_QUERY})
   } catch (error) {
     Sentry.logger.error("Error fetching posts data", {error})
     throw error

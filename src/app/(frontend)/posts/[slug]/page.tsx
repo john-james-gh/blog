@@ -15,7 +15,7 @@ import {POST_QUERYResult} from "@/sanity/types"
 const getPost = async (props: PageProps<"/posts/[slug]">) => {
   const params = await props.params
   try {
-    return sanityFetch({
+    return await sanityFetch({
       query: POST_QUERY,
       params,
     })
