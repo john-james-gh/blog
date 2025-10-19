@@ -16,4 +16,6 @@ Sentry.init({
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
   enabled: process.env.NODE_ENV === "production",
+  // Enable logs to be sent to Sentry
+  enableLogs: true,
 })

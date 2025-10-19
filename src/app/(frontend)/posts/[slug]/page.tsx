@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs"
 import {PortableText} from "next-sanity"
 import type {Metadata} from "next/dist/lib/metadata/types/metadata-interface"
 import Image from "next/image"
@@ -13,10 +14,15 @@ import {POST_QUERYResult} from "@/sanity/types"
 
 const getPost = async (props: PageProps<"/posts/[slug]">) => {
   const params = await props.params
-  return sanityFetch({
-    query: POST_QUERY,
-    params,
-  })
+  try {
+    return sanityFetch({
+      query: POST_QUERY,
+      params,
+    })
+  } catch (error) {
+    Sentry.logger.error("Error fetching post data", {error, params})
+    throw error
+  }
 }
 
 export async function generateMetadata(props: PageProps<"/posts/[slug]">): Promise<Metadata> {
