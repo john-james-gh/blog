@@ -66,6 +66,7 @@ export default async function Page() {
         width={800}
         height={300}
         quality={80}
+        priority
       />
       <h1>john james.</h1>
       <ul className="flex w-full flex-col text-center">
