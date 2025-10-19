@@ -91,6 +91,7 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
           alt={post?.mainImage?.alt || ""}
           width={800}
           height={300}
+          priority
         />
       ) : null}
       <h1>{post?.title}</h1>

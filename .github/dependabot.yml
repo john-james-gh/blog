@@ -19,6 +19,8 @@ updates:
 
     ignore:
       - dependency-name: "eslint-plugin-react-hooks"
+      - dependency-name: "import-in-the-middle"
+      - dependency-name: "require-in-the-middle"
 
     groups:
       react-stack:
