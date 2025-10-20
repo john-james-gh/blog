@@ -56,3 +56,5 @@ node_modules/
 .github/instructions/nx.instructions.md
 # Sentry Config File
 .env.sentry-build-plugin
+
+.vercel
