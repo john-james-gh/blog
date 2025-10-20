@@ -70,8 +70,8 @@ importers:
         specifier: ^3
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.345
-        version: 0.0.345
+        specifier: ^0.0.346
+        version: 0.0.346
       '@next/env':
         specifier: ^15.5.6
         version: 15.5.6
@@ -1132,8 +1132,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.345':
-    resolution: {integrity: sha512-/VtCyhhvnHVR/HZnlYMlwg10VPQHlGvKeTU3vwa2wBeDE9/7EwYUlx0BaI6pjz8Y74WnjeIKy+bkgG3gfVxBXw==}
+  '@github/copilot@0.0.346':
+    resolution: {integrity: sha512-aUhDwCoRX++xOisVH2mbGjaguDgBekN7Nm02S529ZGSdynuoJmwPPKe/nsaZNvGwYTX7njMfLTb6xjZTFnmdEw==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -2777,6 +2777,9 @@ packages:
 
   '@types/node@24.8.1':
     resolution: {integrity: sha512-alv65KGRadQVfVcG69MuB4IzdYVpRwMG/mq8KWOaoOdyY617P5ivaDiMCGOFDWD2sAn5Q0mR3mRtUOgm99hL9Q==}
+
+  '@types/node@24.9.0':
+    resolution: {integrity: sha512-MKNwXh3seSK8WurXF7erHPJ2AONmMwkI7zAMrXZDPIru8jRqkk6rGDBVbw4mLwfqA+ZZliiDPg05JQ3uW66tKQ==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -6666,6 +6669,9 @@ packages:
   undici-types@7.14.0:
     resolution: {integrity: sha512-QQiYxHuyZ9gQUIrmPo3IA+hUl4KYk8uSA7cHrcKd/l3p1OTpZcM0Tbp9x7FAtXdAYhlasd60ncPpgu6ihG6TOA==}
 
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
+
   undici@5.29.0:
     resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
     engines: {node: '>=14.0'}
@@ -8325,7 +8331,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.345':
+  '@github/copilot@0.0.346':
     dependencies:
       node-pty: '@devm33/node-pty@1.0.9'
       sharp: 0.34.4
@@ -10345,6 +10351,10 @@ snapshots:
   '@types/node@24.8.1':
     dependencies:
       undici-types: 7.14.0
+
+  '@types/node@24.9.0':
+    dependencies:
+      undici-types: 7.16.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -12638,7 +12648,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.8.1
+      '@types/node': 24.9.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -14723,6 +14733,8 @@ snapshots:
       which-boxed-primitive: 1.1.1
 
   undici-types@7.14.0: {}
+
+  undici-types@7.16.0: {}
 
   undici@5.29.0:
     dependencies:
