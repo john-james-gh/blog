@@ -70,8 +70,8 @@ importers:
         specifier: ^3
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.347
-        version: 0.0.347
+        specifier: ^0.0.349
+        version: 0.0.349
       '@next/env':
         specifier: ^15.5.6
         version: 15.5.6
@@ -782,6 +782,9 @@ packages:
   '@codemirror/autocomplete@6.19.0':
     resolution: {integrity: sha512-61Hfv3cF07XvUxNeC3E7jhG8XNi1Yom1G0lRC936oLnlF+jrbrv8rc/J98XlYzcsAoTVupfsf5fLej1aI8kyIg==}
 
+  '@codemirror/commands@6.10.0':
+    resolution: {integrity: sha512-2xUIc5mHXQzT16JnyOFkh8PvfeXuIut3pslWGfsGOhxP/lpgRm9HOl/mpzLErgt5mXDovqA0d11P21gofRLb9w==}
+
   '@codemirror/commands@6.9.0':
     resolution: {integrity: sha512-454TVgjhO6cMufsyyGN70rGIfJxJEjcqjBG2x2Y03Y/+Fm99d3O/Kv1QDYWuG6hvxsgmjXmBuATikIIYvERX+w==}
 
@@ -869,9 +872,6 @@ packages:
 
   '@date-fns/utc@2.1.1':
     resolution: {integrity: sha512-SlJDfG6RPeEX8wEVv6ZB3kak4MmbtyiI2qX/5zuKdordbrhB/iaJ58GVMZgJ6P1sJaM1gMgENFYYeg1JWrCFrA==}
-
-  '@devm33/node-pty@1.0.9':
-    resolution: {integrity: sha512-5yzbTTywkaFk1iRwte2aWEpyDfcpDjCofVD1BiOUQI+fsCvp/+RdJnB4jgnULrdlWOEWuBf+bg4/NZKVApPhoQ==}
 
   '@dnd-kit/accessibility@3.1.1':
     resolution: {integrity: sha512-2P+YgaXF+gRsIihwwY1gCsQSYnu9Zyj2py8kY5fFvUM1qm2WA2u639R6YNVfU4GWr+ZM5mqEsfHZZLoRONbemw==}
@@ -1135,8 +1135,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.347':
-    resolution: {integrity: sha512-EKsxyb6HgLq6ARZmI71bK6a+/J7gEKvPSM44gFwT0ss0Oiy8TUKNjoJMj6VHxGh1mfRchp7MvLct9nAYLlyaLQ==}
+  '@github/copilot@0.0.349':
+    resolution: {integrity: sha512-srD/z2OSPtFWeNg9s7dldYBcGrcUdXIvmA/s8TqpwzRlP8FlTYChVEo6gI4tu1I0jhdVjxfiTiIFEN8/i9F4mA==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -5397,9 +5397,6 @@ packages:
       sass:
         optional: true
 
-  node-addon-api@7.1.1:
-    resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
-
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
     engines: {node: 4.x || >=6.0.0}
@@ -7996,6 +7993,13 @@ snapshots:
       '@codemirror/view': 6.38.6
       '@lezer/common': 1.2.3
 
+  '@codemirror/commands@6.10.0':
+    dependencies:
+      '@codemirror/language': 6.11.3
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.38.6
+      '@lezer/common': 1.3.0
+
   '@codemirror/commands@6.9.0':
     dependencies:
       '@codemirror/language': 6.11.3
@@ -8140,10 +8144,6 @@ snapshots:
   '@date-fns/tz@1.4.1': {}
 
   '@date-fns/utc@2.1.1': {}
-
-  '@devm33/node-pty@1.0.9':
-    dependencies:
-      node-addon-api: 7.1.1
 
   '@dnd-kit/accessibility@3.1.1(react@19.2.0)':
     dependencies:
@@ -8346,9 +8346,8 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.347':
+  '@github/copilot@0.0.349':
     dependencies:
-      node-pty: '@devm33/node-pty@1.0.9'
       sharp: 0.34.4
 
   '@humanfs/core@0.19.1': {}
@@ -11178,7 +11177,7 @@ snapshots:
   codemirror@6.0.2:
     dependencies:
       '@codemirror/autocomplete': 6.19.0
-      '@codemirror/commands': 6.9.0
+      '@codemirror/commands': 6.10.0
       '@codemirror/language': 6.11.3
       '@codemirror/lint': 6.9.0
       '@codemirror/search': 6.5.11
@@ -13163,8 +13162,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
-
-  node-addon-api@7.1.1: {}
 
   node-fetch@2.7.0:
     dependencies:
