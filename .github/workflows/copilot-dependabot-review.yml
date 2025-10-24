@@ -41,6 +41,9 @@ jobs:
         run: npm i -g @github/copilot
 
       - name: Run Copilot CLI
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }} # sanitizes before they're used in the shell command
         run: |
           copilot \
           --model claude-sonnet-4.5 \
@@ -48,11 +51,10 @@ jobs:
           --deny-tool 'shell(git push)' \
           --deny-tool 'write' \
           --add-dir "$GITHUB_WORKSPACE" \
-          -p "Review this Dependabot PR using the repo’s Copilot instructions. Do not try to access directories outside the repo. Do not try to write. You do not have access. Do not use /dev/null command. It's buggy.
-          PR: ${{ github.event.pull_request.html_url }}
-          Title: ${{ github.event.pull_request.title }}
-          Body: ${{ github.event.pull_request.body }}
-          Output GitHub Markdown only, no code fences." \
+          -p "Review this Dependabot PR using the repo's Copilot instructions.
+          Title: $PR_TITLE
+          Body: $PR_BODY
+          Output GitHub Markdown only." \
           > /tmp/review.md
 
       - name: Upload full review output
