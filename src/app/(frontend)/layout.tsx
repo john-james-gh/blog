@@ -6,7 +6,6 @@ import {draftMode} from "next/headers"
 import {env} from "@/env"
 import {SanityLive} from "@/sanity/lib/live"
 
-import "../globals.css"
 import {DisableDraftMode} from "./_components/disable-draft-mode"
 
 export default async function FrontendLayout({
