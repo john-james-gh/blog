@@ -79,9 +79,9 @@ export default async function Page() {
         priority
       />
       <h1>john james.</h1>
-      <ul className="flex w-full flex-col text-center">
+      <ul className="mx-0 flex w-full flex-col gap-4 text-center">
         {posts.map((post) => (
-          <li key={post._id} className="list-none p-2">
+          <li key={post._id} className="list-none">
             <Link href={`/posts/${post?.slug?.current}`}>{post?.title}</Link>
           </li>
         ))}

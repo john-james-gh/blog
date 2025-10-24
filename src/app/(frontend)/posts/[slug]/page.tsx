@@ -2,6 +2,7 @@ import * as Sentry from "@sentry/nextjs"
 import {PortableText} from "next-sanity"
 import type {Metadata} from "next/dist/lib/metadata/types/metadata-interface"
 import Image from "next/image"
+import Link from "next/link"
 import {notFound} from "next/navigation"
 import {BlogPosting, WithContext} from "schema-dts"
 
@@ -11,6 +12,8 @@ import {sanityFetch} from "@/sanity/lib/live"
 import {POST_QUERY} from "@/sanity/lib/queries"
 import {components} from "@/sanity/portable-text-components"
 import {POST_QUERYResult} from "@/sanity/types"
+
+import {PublishedAt} from "../../_components/published-at"
 
 const getPost = async (props: PageProps<"/posts/[slug]">) => {
   const params = await props.params
@@ -90,7 +93,7 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
 
   return (
     <main className="bg-accent/30 mx-auto flex max-w-4xl flex-col gap-6 px-6 py-6 pb-100">
-      {post?.mainImage ? (
+      {post.mainImage ? (
         <Image
           className="aspect-[800/300] w-full rounded-xl"
           src={urlFor(post.mainImage).width(800).height(300).quality(80).auto("format").url()}
@@ -100,18 +103,28 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
           priority
         />
       ) : null}
-      <h1>{post?.title}</h1>
-      <div className="flex flex-row flex-wrap items-center gap-4">
-        {post?.author?.name ? <p className="m-0">By {post.author.name}</p> : null}
-        {post?._createdAt ? (
-          <p className="m-0">Published on {new Date(post._createdAt).toLocaleDateString()}</p>
-        ) : null}
-        <p className="m-0">Read time ~3 min</p>
-      </div>
-      {post?.body ? (
-        <article>
-          <PortableText value={post.body} components={components} />
-        </article>
+      <article>
+        <header className="flex flex-col gap-6">
+          <h1>{post.title}</h1>
+          <div className="flex flex-row flex-wrap items-center gap-x-4">
+            {post.author?.name ? <p className="m-0">By {post.author.name}</p> : null}
+            <PublishedAt publishedAt={post.publishedAt} />
+            <p className="m-0">Read time ~3 min</p>
+          </div>
+        </header>
+        {post.body ? <PortableText value={post.body} components={components} /> : null}
+      </article>
+      {post.relatedPosts && post.relatedPosts.length > 0 ? (
+        <aside className="mt-50">
+          <h2>see also</h2>
+          <ul className="mx-0 flex w-full flex-col gap-4">
+            {post.relatedPosts.map((relatedPost) => (
+              <li key={relatedPost._id} className="list-none">
+                <Link href={`/posts/${relatedPost.slug?.current}`}>{relatedPost.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </aside>
       ) : null}
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html: pageJson}} />
     </main>
