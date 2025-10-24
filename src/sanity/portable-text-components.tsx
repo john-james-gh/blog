@@ -63,10 +63,10 @@ export const components: PortableTextComponents = {
       props.value ? (
         <Image
           className="not-prose h-auto w-full rounded-lg"
-          src={urlFor(props.value).width(600).height(400).quality(80).auto("format").url()}
+          src={urlFor(props.value).width(800).quality(80).auto("format").url()}
           alt={props?.value?.alt || ""}
-          width={600}
-          height={400}
+          width={800}
+          height={800}
         />
       ) : null,
   },
