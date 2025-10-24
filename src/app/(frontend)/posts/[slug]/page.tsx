@@ -115,6 +115,7 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
       </article>
       {post.relatedPosts && post.relatedPosts.length > 0 ? (
         <aside>
+          <hr />
           <h3>see also</h3>
           <ul className="mx-0 flex w-full flex-col gap-4">
             {post.relatedPosts.map((relatedPost) => (
