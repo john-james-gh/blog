@@ -61,6 +61,28 @@ export const postType = defineType({
       name: "seo",
       type: "seo",
     }),
+    defineField({
+      name: "relatedPosts",
+      title: "Related Posts",
+      description: "Select up to 3 related posts to display as 'See Also' links",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{type: "post"}],
+          options: {
+            filter: ({document}) => {
+              // Prevent selecting the current post
+              return {
+                filter: "_id != $id",
+                params: {id: document._id.replace(/^drafts\./, "")},
+              }
+            },
+          },
+        }),
+      ],
+      validation: (rule) => rule.max(3),
+    }),
   ],
   preview: {
     select: {

@@ -89,6 +89,13 @@ export type Post = {
       } & Code)
   >
   seo?: Seo
+  relatedPosts?: Array<{
+    _ref: string
+    _type: "reference"
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: "post"
+  }>
 }
 
 export type Seo = {
@@ -444,7 +451,7 @@ export type POSTS_QUERYResult = Array<{
   } | null
 }>
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  slug,  mainImage,  publishedAt,  _createdAt,  _updatedAt,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  slug,  mainImage,  publishedAt,  _createdAt,  _updatedAt,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  "categories": coalesce(categories[]->{      _id,      slug,      title    }, []),  author->{    name,    image  },  "relatedPosts": coalesce(relatedPosts[]->{    _id,    title,    slug,    publishedAt  }, [])}
 export type POST_QUERYResult = {
   _id: string
   title: string | null
@@ -541,6 +548,14 @@ export type POST_QUERYResult = {
       _type: "image"
     } | null
   } | null
+  relatedPosts:
+    | Array<{
+        _id: string
+        title: string | null
+        slug: Slug | null
+        publishedAt: string | null
+      }>
+    | Array<never>
 } | null
 // Variable: SITEMAP_QUERY
 // Query: *[_type == "post" && defined(slug.current)] {    "href": "/posts/" + slug.current,    _updatedAt}
@@ -552,7 +567,7 @@ export type SITEMAP_QUERYResult = Array<{
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  _updatedAt,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': POSTS_QUERYResult
-    '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  slug,\n  mainImage,\n  publishedAt,\n  _createdAt,\n  _updatedAt,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}': POST_QUERYResult
+    '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  slug,\n  mainImage,\n  publishedAt,\n  _createdAt,\n  _updatedAt,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  "categories": coalesce(categories[]->{\n      _id,\n      slug,\n      title\n    }, []),\n  author->{\n    name,\n    image\n  },\n  "relatedPosts": coalesce(relatedPosts[]->{\n    _id,\n    title,\n    slug,\n    publishedAt\n  }, [])\n}': POST_QUERYResult
     '\n*[_type == "post" && defined(slug.current)] {\n    "href": "/posts/" + slug.current,\n    _updatedAt\n}\n': SITEMAP_QUERYResult
   }
 }

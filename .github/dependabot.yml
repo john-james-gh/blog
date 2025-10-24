@@ -21,6 +21,7 @@ updates:
       - dependency-name: "eslint-plugin-react-hooks"
       - dependency-name: "import-in-the-middle"
       - dependency-name: "require-in-the-middle"
+      - dependency-name: "dataloader"
 
     groups:
       react-stack:

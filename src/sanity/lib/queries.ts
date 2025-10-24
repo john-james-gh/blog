@@ -44,18 +44,21 @@ export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slu
     "image": seo.image,
     "noIndex": seo.noIndex == true
   },
-  "categories": coalesce(
-    categories[]->{
+  "categories": coalesce(categories[]->{
       _id,
       slug,
       title
-    },
-    []
-  ),
+    }, []),
   author->{
     name,
     image
-  }
+  },
+  "relatedPosts": coalesce(relatedPosts[]->{
+    _id,
+    title,
+    slug,
+    publishedAt
+  }, [])
 }`)
 
 export const SITEMAP_QUERY = defineQuery(`
