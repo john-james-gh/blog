@@ -6,14 +6,13 @@ import Link from "next/link"
 import {notFound} from "next/navigation"
 import {BlogPosting, WithContext} from "schema-dts"
 
+import {PublishedAt} from "@/app/(frontend)/_components/published-at"
 import {baseUrl} from "@/env"
 import {urlFor} from "@/sanity/lib/image"
 import {sanityFetch} from "@/sanity/lib/live"
 import {POST_QUERY} from "@/sanity/lib/queries"
 import {components} from "@/sanity/portable-text-components"
 import {POST_QUERYResult} from "@/sanity/types"
-
-import {PublishedAt} from "../../_components/published-at"
 
 const getPost = async (props: PageProps<"/posts/[slug]">) => {
   const params = await props.params
