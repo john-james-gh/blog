@@ -114,8 +114,9 @@ export default async function Page(props: PageProps<"/posts/[slug]">) {
         {post.body ? <PortableText value={post.body} components={components} /> : null}
       </article>
       {post.relatedPosts && post.relatedPosts.length > 0 ? (
-        <aside className="mt-50">
-          <h2>see also</h2>
+        <aside>
+          <hr />
+          <h3>see also</h3>
           <ul className="mx-0 flex w-full flex-col gap-4">
             {post.relatedPosts.map((relatedPost) => (
               <li key={relatedPost._id} className="list-none">
