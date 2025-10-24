@@ -52,7 +52,7 @@
     "eslint-config-next": "15.5.6",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "6.1.0",
-    "nx": "21.6.5",
+    "nx": "22.0.1",
     "prettier": "^3.6.0",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "sort-package-json": "^3.4.0",
