@@ -38,18 +38,18 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.3.1",
     "@github/copilot": "^0.0.351",
     "@next/env": "^15.5.6",
     "@next/eslint-plugin-next": "^15.5.6",
     "@playwright/test": "^1.56.1",
     "@sanity/client": "^7.12.0",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.16",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/node": "^24",
+    "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "eslint": "^9",
+    "eslint": "^9.38.0",
     "eslint-config-next": "15.5.6",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "6.1.0",
@@ -57,8 +57,8 @@
     "prettier": "^3.6.0",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "sort-package-json": "^3.4.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.9.3"
   },
   "packageManager": "pnpm@10.17.1",
   "nx": {
