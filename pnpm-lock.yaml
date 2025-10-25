@@ -73,8 +73,8 @@ importers:
         specifier: ^3
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.350
-        version: 0.0.350
+        specifier: ^0.0.351
+        version: 0.0.351
       '@next/env':
         specifier: ^15.5.6
         version: 15.5.6
@@ -1135,8 +1135,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.350':
-    resolution: {integrity: sha512-+Zqt7g4F7lQoj12iE82namIU+ymUC39ahGX3KDWQdRgkjPKeyKIAsdtTaYBZLEbvc/truIJh3IjLd9PSKKI9Bw==}
+  '@github/copilot@0.0.351':
+    resolution: {integrity: sha512-a3FgxgOvTi3uDVpcD0nxlTwKAGvILeSdf4NKYOAgSQ6HGANJhDGsBtk6O9nUnUAoskkGDDn7vrENM9svOs3sUw==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -2748,6 +2748,9 @@ packages:
 
   '@types/mysql@2.15.27':
     resolution: {integrity: sha512-YfWiV16IY0OeBfBCk8+hXKmdTKrKlwKN1MNKAPBu5JYxLwBEZl7QzeEpGnlZb3VMGJrrGmB84gXiH+ofs/TezA==}
+
+  '@types/node@24.9.1':
+    resolution: {integrity: sha512-QoiaXANRkSXK6p0Duvt56W208du4P9Uye9hWLWgGMDTEoKPhuenzNcC4vGUmrNkiOKTlIrBoyNQYNpSwfEZXSg==}
 
   '@types/node@24.9.1':
     resolution: {integrity: sha512-QoiaXANRkSXK6p0Duvt56W208du4P9Uye9hWLWgGMDTEoKPhuenzNcC4vGUmrNkiOKTlIrBoyNQYNpSwfEZXSg==}
@@ -6638,6 +6641,9 @@ packages:
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
+
   undici@5.29.0:
     resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
     engines: {node: '>=14.0'}
@@ -8300,7 +8306,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.350': {}
+  '@github/copilot@0.0.351': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -10276,6 +10282,10 @@ snapshots:
   '@types/mysql@2.15.27':
     dependencies:
       '@types/node': 24.9.1
+
+  '@types/node@24.9.1':
+    dependencies:
+      undici-types: 7.16.0
 
   '@types/node@24.9.1':
     dependencies:
@@ -14656,6 +14666,8 @@ snapshots:
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
+
+  undici-types@7.16.0: {}
 
   undici-types@7.16.0: {}
 
