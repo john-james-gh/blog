@@ -27,6 +27,13 @@ applyTo: "**"
 ## Utilities
 
 - **Date Handling**: `dayjs` v1 for lightweight formatting and parsing
+- **Data Validation**: `zod` v4 for schema validation and type inference
+- **Code Syntax Highlighting**: `highlight.js` v11 for syntax highlighting in code blocks
+
+## Error Tracking & Monitoring
+
+- **Sentry**: `@sentry/nextjs` v10 for error tracking, performance monitoring, and session replay
+  - Includes `import-in-the-middle` and `require-in-the-middle` for automatic instrumentation
 
 ## Analytics & Performance
 
