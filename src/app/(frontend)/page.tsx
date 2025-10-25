@@ -68,7 +68,7 @@ export default async function Page() {
   const indexJson = JSON.stringify(generateIndexJsonLd(posts))
 
   return (
-    <main className="bg-accent/30 mx-auto flex min-h-screen max-w-4xl flex-col items-center gap-6 px-6 py-6">
+    <main className="bg-accent/30 prose mx-auto flex min-h-screen max-w-4xl flex-col items-center gap-6 px-6 py-6">
       <Image
         className="aspect-[800/300] w-full rounded-xl"
         src="/banner.png"
