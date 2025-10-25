@@ -78,7 +78,7 @@ export default async function Page() {
         quality={80}
         priority
       />
-      <h1>john james.</h1>
+      <h1 className="mb-0">john james.</h1>
       <ul className="mx-0 flex w-full flex-col gap-4 text-center">
         {posts.map((post) => (
           <li key={post._id} className="list-none">
