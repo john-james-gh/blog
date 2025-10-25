@@ -72,8 +72,8 @@ jobs:
 
           # Print from the first match of the marker to EOF.
           # Using a plain text fragment avoids any emoji/UTF-8 match issues.
-          if grep -q 'DEPENDABOT PR REVIEW' "$src"; then
-            sed -n '/DEPENDABOT PR REVIEW/,$p' "$src" > "$dst"
+          if grep -q '📦 \*\*Package:\*\*' "$src"; then
+            sed -n '/📦 \*\*Package:\*\*/,$p' "$src" > "$dst"
           else
             # Fallback: keep the whole thing so we don't fail silently
             cp "$src" "$dst"
