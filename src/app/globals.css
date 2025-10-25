@@ -46,57 +46,63 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+}
 
-  img {
+@layer components {
+  .prose {
+    @apply space-y-6;
+  }
+
+  .prose img {
     @apply my-6 rounded;
   }
 
-  code,
-  pre {
+  .prose code,
+  .prose pre {
     @apply bg-muted relative rounded font-mono text-sm font-semibold;
   }
 
-  pre {
+  .prose pre {
     @apply my-6 overflow-x-auto rounded-lg;
   }
 
-  h1 {
+  .prose h1 {
     @apply scroll-m-20 text-center text-3xl font-extrabold tracking-tight text-balance sm:text-4xl;
   }
 
-  h2 {
+  .prose h2 {
     @apply mt-6 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
   }
 
-  h3 {
+  .prose h3 {
     @apply mt-6 scroll-m-20 text-2xl font-semibold tracking-tight;
   }
 
-  h4 {
+  .prose h4 {
     @apply mt-6 scroll-m-20 text-xl font-semibold tracking-tight;
   }
 
-  p {
+  .prose p {
     @apply text-sm leading-7 text-balance [&:not(:first-child)]:mt-6;
   }
 
-  a {
+  .prose a {
     @apply text-sm underline underline-offset-4;
   }
 
-  blockquote {
+  .prose blockquote {
     @apply mt-6 border-l-2 pl-6 italic;
   }
 
-  ul {
+  .prose ul {
     @apply my-6 ml-6 list-disc text-sm;
   }
 
-  ol {
+  .prose ol {
     @apply my-6 ml-6 list-decimal text-sm;
   }
 
-  li {
+  .prose li {
     @apply text-sm leading-7;
   }
 }
