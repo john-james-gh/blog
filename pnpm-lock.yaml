@@ -73,8 +73,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.351
-        version: 0.0.351
+        specifier: ^0.0.352
+        version: 0.0.352
       '@next/env':
         specifier: ^15.5.6
         version: 15.5.6
@@ -1135,8 +1135,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.351':
-    resolution: {integrity: sha512-a3FgxgOvTi3uDVpcD0nxlTwKAGvILeSdf4NKYOAgSQ6HGANJhDGsBtk6O9nUnUAoskkGDDn7vrENM9svOs3sUw==}
+  '@github/copilot@0.0.352':
+    resolution: {integrity: sha512-uARfAFOx2JG9mkOEtZ6H3uxIfJ+N25ZUZuXp8bfQyk4k/yrjhhyidULmAC7hUbgT7lOGuijirfFkMrii54kAsw==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -1484,6 +1484,9 @@ packages:
 
   '@lezer/highlight@1.2.2':
     resolution: {integrity: sha512-z8TQwaBXXQIvG6i2g3e9cgMwUUXu9Ib7jo2qRRggdhwKpM56Dw3PM3wmexn+EGaaOZ7az0K7sjc3/gcGW7sz7A==}
+
+  '@lezer/highlight@1.2.3':
+    resolution: {integrity: sha512-qXdH7UqTvGfdVBINrgKhDsVTJTxactNNxLk7+UMwZhU13lMHaOBlJe9Vqp907ya56Y3+ed2tlqzys7jDkTmW0g==}
 
   '@lezer/html@1.3.12':
     resolution: {integrity: sha512-RJ7eRWdaJe3bsiiLLHjCFT1JMk8m1YP9kaUbvu2rMLEoOnke9mcTVDyfOslsln0LtujdWespjJ39w6zo+RsQYw==}
@@ -8083,7 +8086,7 @@ snapshots:
       '@codemirror/language': 6.11.3
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.38.6
-      '@lezer/highlight': 1.2.2
+      '@lezer/highlight': 1.2.3
 
   '@codemirror/view@6.38.6':
     dependencies:
@@ -8316,7 +8319,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.351': {}
+  '@github/copilot@0.0.352': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -8613,6 +8616,10 @@ snapshots:
       '@lezer/common': 1.2.3
 
   '@lezer/highlight@1.2.2':
+    dependencies:
+      '@lezer/common': 1.3.0
+
+  '@lezer/highlight@1.2.3':
     dependencies:
       '@lezer/common': 1.3.0
 
