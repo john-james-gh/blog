@@ -73,8 +73,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.352
-        version: 0.0.352
+        specifier: ^0.0.353
+        version: 0.0.353
       '@next/env':
         specifier: ^15.5.6
         version: 15.5.6
@@ -1135,8 +1135,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.352':
-    resolution: {integrity: sha512-uARfAFOx2JG9mkOEtZ6H3uxIfJ+N25ZUZuXp8bfQyk4k/yrjhhyidULmAC7hUbgT7lOGuijirfFkMrii54kAsw==}
+  '@github/copilot@0.0.353':
+    resolution: {integrity: sha512-OYgCB4Jf7Y/Wor8mNNQcXEt1m1koYm/WwjGsr5mwABSVYXArWUeEfXqVbx+7O87ld5b+aWy2Zaa2bzKV8dmqaw==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -2763,6 +2763,9 @@ packages:
 
   '@types/node@24.9.1':
     resolution: {integrity: sha512-QoiaXANRkSXK6p0Duvt56W208du4P9Uye9hWLWgGMDTEoKPhuenzNcC4vGUmrNkiOKTlIrBoyNQYNpSwfEZXSg==}
+
+  '@types/node@24.9.2':
+    resolution: {integrity: sha512-uWN8YqxXxqFMX2RqGOrumsKeti4LlmIMIyV0lgut4jx7KQBcBiW6vkDtIBvHnHIquwNfJhk8v2OtmO8zXWHfPA==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -8319,7 +8322,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.352': {}
+  '@github/copilot@0.0.353': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -10319,6 +10322,10 @@ snapshots:
       '@types/node': 24.9.1
 
   '@types/node@24.9.1':
+    dependencies:
+      undici-types: 7.16.0
+
+  '@types/node@24.9.2':
     dependencies:
       undici-types: 7.16.0
 
@@ -12607,7 +12614,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.9.1
+      '@types/node': 24.9.2
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
