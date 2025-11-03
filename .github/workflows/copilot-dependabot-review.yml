@@ -20,7 +20,7 @@ jobs:
   copilot-cli-review:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -54,6 +54,10 @@ jobs:
           -p "Review this Dependabot PR using the repo's Copilot instructions.
           Title: $PR_TITLE
           Body: $PR_BODY
+          Do not use /dev/null or similar as a file path because it results in 
+          'The following paths are outside the allowed directories:
+          /dev/null || rg
+          Allow access to these paths? (y/n)' error. You do not have access outside the allowed directory which is the repo directory.
           Output GitHub Markdown only." \
           > /tmp/review.md
 
