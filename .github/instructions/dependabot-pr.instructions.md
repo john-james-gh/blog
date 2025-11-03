@@ -10,12 +10,7 @@ When the PR author is `dependabot[bot]` or `dependabot`, perform a focused depen
 
 ### 1. Trace Usage
 
-Identify the package name and search the codebase to understand how widely it's used:
-
-```bash
-rg "from ['\"]<package-name>" src/
-rg "import.*<package-name>" src/
-```
+Identify the package name and search the codebase to understand how widely it's used.
 
 Report: How many files import this package and whether usage is centralized or scattered.
 
