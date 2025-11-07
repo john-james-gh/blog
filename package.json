@@ -44,7 +44,7 @@
     "@next/eslint-plugin-next": "^15.5.6",
     "@playwright/test": "^1.56.1",
     "@sanity/client": "^7.12.0",
-    "@tailwindcss/postcss": "^4.1.16",
+    "@tailwindcss/postcss": "^4.1.17",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
@@ -57,7 +57,7 @@
     "prettier": "^3.6.0",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "sort-package-json": "^3.4.0",
-    "tailwindcss": "^4.1.16",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3"
   },
   "packageManager": "pnpm@10.17.1",
