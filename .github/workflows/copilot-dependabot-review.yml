@@ -10,7 +10,7 @@ concurrency:
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened]
 
 env:
   # Fine-grained PAT with "Copilot Requests" permission
@@ -69,23 +69,8 @@ jobs:
           path: /tmp/review.md
           retention-days: 7
 
-      - name: Trim Copilot output to the review section
-        run: |
-          set -euo pipefail
-          src="/tmp/review.md"
-          dst="/tmp/review.trimmed.md"
-
-          # Print from the first match of the marker to EOF.
-          # Using a plain text fragment avoids any emoji/UTF-8 match issues.
-          if grep -q '📦 \*\*Package:\*\*' "$src"; then
-            sed -n '/📦 \*\*Package:\*\*/,$p' "$src" > "$dst"
-          else
-            # Fallback: keep the whole thing so we don't fail silently
-            cp "$src" "$dst"
-          fi
-
       - name: Post review as PR comment
         uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body-path: /tmp/review.trimmed.md
+          body-path: /tmp/review.md
