@@ -10,7 +10,7 @@ concurrency:
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened]
 
 env:
   # Fine-grained PAT with "Copilot Requests" permission

@@ -3,9 +3,6 @@ import type {NextConfig} from "next"
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     qualities: [80, 100],
     remotePatterns: [

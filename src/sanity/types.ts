@@ -16,6 +16,25 @@ import "@sanity/client"
  */
 
 // Source: schema.json
+export type Seo = {
+  _type: "seo"
+  title?: string
+  description?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: "reference"
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+    }
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: "image"
+  }
+  noIndex?: boolean
+}
+
 export type Post = {
   _id: string
   _type: "post"
@@ -51,43 +70,7 @@ export type Post = {
     [internalGroqTypeReferenceTo]?: "category"
   }>
   publishedAt?: string
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: "span"
-          _key: string
-        }>
-        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote"
-        listItem?: "bullet" | "number"
-        markDefs?: Array<{
-          href?: string
-          _type: "link"
-          _key: string
-        }>
-        level?: number
-        _type: "block"
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: "reference"
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
-        }
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        alt?: string
-        _type: "image"
-        _key: string
-      }
-    | ({
-        _key: string
-      } & Code)
-  >
+  body?: BlockContent
   seo?: Seo
   relatedPosts?: Array<{
     _ref: string
@@ -98,24 +81,59 @@ export type Post = {
   }>
 }
 
-export type Seo = {
-  _type: "seo"
-  title?: string
-  description?: string
-  image?: {
-    asset?: {
-      _ref: string
-      _type: "reference"
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
-    }
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: "image"
-  }
-  noIndex?: boolean
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop"
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
 }
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot"
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
+
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: "span"
+        _key: string
+      }>
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote"
+      listItem?: "bullet" | "number"
+      markDefs?: Array<{
+        href?: string
+        _type: "link"
+        _key: string
+      }>
+      level?: number
+      _type: "block"
+      _key: string
+    }
+  | {
+      asset?: {
+        _ref: string
+        _type: "reference"
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: "image"
+      _key: string
+    }
+  | ({
+      _key: string
+    } & Code)
+>
 
 export type Author = {
   _id: string
@@ -157,6 +175,12 @@ export type Author = {
   }>
 }
 
+export type Slug = {
+  _type: "slug"
+  current?: string
+  source?: string
+}
+
 export type Category = {
   _id: string
   _type: "category"
@@ -167,44 +191,6 @@ export type Category = {
   slug?: Slug
   description?: string
 }
-
-export type BlockContent = Array<
-  | {
-      children?: Array<{
-        marks?: Array<string>
-        text?: string
-        _type: "span"
-        _key: string
-      }>
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote"
-      listItem?: "bullet" | "number"
-      markDefs?: Array<{
-        href?: string
-        _type: "link"
-        _key: string
-      }>
-      level?: number
-      _type: "block"
-      _key: string
-    }
-  | {
-      asset?: {
-        _ref: string
-        _type: "reference"
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
-      }
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      alt?: string
-      _type: "image"
-      _key: string
-    }
-  | ({
-      _key: string
-    } & Code)
->
 
 export type Code = {
   _type: "code"
@@ -240,20 +226,15 @@ export type SanityImageDimensions = {
   aspectRatio?: number
 }
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot"
-  x?: number
-  y?: number
-  height?: number
-  width?: number
-}
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop"
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata"
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
 }
 
 export type SanityFileAsset = {
@@ -276,6 +257,13 @@ export type SanityFileAsset = {
   path?: string
   url?: string
   source?: SanityAssetSourceData
+}
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData"
+  name?: string
+  id?: string
+  url?: string
 }
 
 export type SanityImageAsset = {
@@ -301,17 +289,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData
 }
 
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata"
-  location?: Geopoint
-  dimensions?: SanityImageDimensions
-  palette?: SanityImagePalette
-  lqip?: string
-  blurHash?: string
-  hasAlpha?: boolean
-  isOpaque?: boolean
-}
-
 export type Geopoint = {
   _type: "geopoint"
   lat?: number
@@ -319,37 +296,24 @@ export type Geopoint = {
   alt?: number
 }
 
-export type Slug = {
-  _type: "slug"
-  current?: string
-  source?: string
-}
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData"
-  name?: string
-  id?: string
-  url?: string
-}
-
 export type AllSanitySchemaTypes =
-  | Post
   | Seo
-  | Author
-  | Category
+  | Post
+  | SanityImageCrop
+  | SanityImageHotspot
   | BlockContent
+  | Author
+  | Slug
+  | Category
   | Code
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
-  | SanityImageHotspot
-  | SanityImageCrop
-  | SanityFileAsset
-  | SanityImageAsset
   | SanityImageMetadata
-  | Geopoint
-  | Slug
+  | SanityFileAsset
   | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint
 export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
@@ -358,43 +322,7 @@ export type POSTS_QUERYResult = Array<{
   _id: string
   title: string | null
   slug: Slug | null
-  body: Array<
-    | ({
-        _key: string
-      } & Code)
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: "span"
-          _key: string
-        }>
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal"
-        listItem?: "bullet" | "number"
-        markDefs?: Array<{
-          href?: string
-          _type: "link"
-          _key: string
-        }>
-        level?: number
-        _type: "block"
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: "reference"
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
-        }
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        alt?: string
-        _type: "image"
-        _key: string
-      }
-  > | null
+  body: BlockContent | null
   mainImage: {
     asset?: {
       _ref: string
@@ -455,43 +383,7 @@ export type POSTS_QUERYResult = Array<{
 export type POST_QUERYResult = {
   _id: string
   title: string | null
-  body: Array<
-    | ({
-        _key: string
-      } & Code)
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: "span"
-          _key: string
-        }>
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal"
-        listItem?: "bullet" | "number"
-        markDefs?: Array<{
-          href?: string
-          _type: "link"
-          _key: string
-        }>
-        level?: number
-        _type: "block"
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: "reference"
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset"
-        }
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        alt?: string
-        _type: "image"
-        _key: string
-      }
-  > | null
+  body: BlockContent | null
   slug: Slug | null
   mainImage: {
     asset?: {
