@@ -73,8 +73,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.361
-        version: 0.0.361
+        specifier: ^0.0.365
+        version: 0.0.365
       '@next/env':
         specifier: ^16.0.3
         version: 16.0.3
@@ -1318,8 +1318,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.361':
-    resolution: {integrity: sha512-jjd/cNe7hAriRFW+3H+KuW9JAJuQ+dznDjdkda7YlojNmS0e7/9qsTOdwR95kSfYXZ/p5g3+MQMvqUhdybQCLw==}
+  '@github/copilot@0.0.365':
+    resolution: {integrity: sha512-VXW+FHQkjTA5TGcVzvfUbmUr9AilBPDYU89iPFc5mZlZqDMaOpN4X2twYn9qJBO9y0Vhmorzwxaa4aQdsUYZ9w==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -4645,6 +4645,7 @@ packages:
 
   get-random-values-esm@1.0.2:
     resolution: {integrity: sha512-HMSDTgj1HPFAuZG0FqxzHbYt5JeEGDUeT9r1RLXhS6RZQS8rLRjokgjZ0Pd28CN0lhXlRwfH6eviZqZEJ2kIoA==}
+    deprecated: use crypto.getRandomValues() instead
 
   get-random-values@1.2.2:
     resolution: {integrity: sha512-lMyPjQyl0cNNdDf2oR+IQ/fM3itDvpoHy45Ymo2r0L1EjazeSl13SfbKZs7KtZ/3MDCeueiaJiuOEfKqRTsSgA==}
@@ -8783,7 +8784,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.361': {}
+  '@github/copilot@0.0.365': {}
 
   '@humanfs/core@0.19.1': {}
 
