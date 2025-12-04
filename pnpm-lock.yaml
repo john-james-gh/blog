@@ -73,8 +73,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       '@github/copilot':
-        specifier: ^0.0.361
-        version: 0.0.361
+        specifier: ^0.0.366
+        version: 0.0.366
       '@next/env':
         specifier: ^16.0.3
         version: 16.0.3
@@ -1318,8 +1318,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@github/copilot@0.0.361':
-    resolution: {integrity: sha512-jjd/cNe7hAriRFW+3H+KuW9JAJuQ+dznDjdkda7YlojNmS0e7/9qsTOdwR95kSfYXZ/p5g3+MQMvqUhdybQCLw==}
+  '@github/copilot@0.0.366':
+    resolution: {integrity: sha512-mJ3wAvn4/yCrQBG5kcn2SOvWQSlrftkbpaAUBXX4l42y6Xsi4d9teuEdcwKOsUWLNDavpt3ecoCDnZUaCb/81A==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -3634,8 +3634,8 @@ packages:
     resolution: {integrity: sha512-aTUKW4ptQhS64+v2d6IkPzymEzzhw+G0bA1g3uBRV3+ntkH+svttKseW5IOR4Ed6NUVKqnY7qT3dKvzQ7io4AA==}
     hasBin: true
 
-  baseline-browser-mapping@2.9.0:
-    resolution: {integrity: sha512-Mh++g+2LPfzZToywfE1BUzvZbfOY52Nil0rn9H1CPC5DJ7fX+Vir7nToBeoiSbB1zTNeGYbELEvJESujgGrzXw==}
+  baseline-browser-mapping@2.9.2:
+    resolution: {integrity: sha512-PxSsosKQjI38iXkmb3d0Y32efqyA0uW4s41u4IVBsLlWLhCiYNpH/AfNOVWRqCQBlD8TFJTz6OUWNd4DFJCnmw==}
     hasBin: true
 
   before-after-hook@2.2.3:
@@ -8779,7 +8779,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@github/copilot@0.0.361': {}
+  '@github/copilot@0.0.366': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -11470,7 +11470,7 @@ snapshots:
 
   baseline-browser-mapping@2.8.30: {}
 
-  baseline-browser-mapping@2.9.0: {}
+  baseline-browser-mapping@2.9.2: {}
 
   before-after-hook@2.2.3: {}
 
@@ -11523,7 +11523,7 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.9.0
+      baseline-browser-mapping: 2.9.2
       caniuse-lite: 1.0.30001759
       electron-to-chromium: 1.5.264
       node-releases: 2.0.27
