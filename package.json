@@ -65,5 +65,10 @@
     "metadata": {
       "description": "A blog built with Next.js and Sanity.io"
     }
+  },
+  "pnpm": {
+    "overrides": {
+      "valibot": "1.2.0"
+    }
   }
 }
