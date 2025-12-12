@@ -32,7 +32,7 @@
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "require-in-the-middle": "8.0.1",
-    "sanity": "^4.21.0",
+    "sanity": "^4.21.1",
     "schema-dts": "^1.1.5",
     "styled-components": "^6.1.19",
     "zod": "^4.1.13"
