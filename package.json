@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
-    "@github/copilot": "^0.0.367",
+    "@github/copilot": "^0.0.368",
     "@next/env": "^16.0.7",
     "@next/eslint-plugin-next": "^16.0.7",
     "@playwright/test": "^1.57.0",
